@@ -8,9 +8,17 @@ The password manager is a project developed for a school module, LB2, as part of
 
 Clone the repo:
 
-1. **Clone the repo**: git clone git@github.com:parwarr/password-manager.git
+1. **Clone the repo**:
 
-2. **Move to the project**: cd ...
+```bash
+$ git clone git@github.com:parwarr/password-manager.git
+```
+
+2. **Move to the project**:
+
+```bash
+$ cd ...
+```
 
 To run the password manager, follow these steps:
 
