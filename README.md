@@ -4,6 +4,13 @@
 
 The password manager is a project developed for a school module, LB2, as part of an exam. This PowerShell script allows users...
 
+## Goal of this Code
+
+The Goal of this projekt is, to create a user-friendly passwort manager with the language powershell.
+The GUI will be simple and easy to handle.
+The entered passwords will be encrypted and saved on a sqplite database that we will create.
+
+
 ## Getting Started
 
 Clone the repo:
