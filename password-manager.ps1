@@ -18,4 +18,13 @@
    Version
    1.0.1
 
-   To-Do:
+   To-Do: 
+   Plan the project
+   Ablaufdiagramm
+   Write the code
+   Test the code
+   Publish the code
+
+   #>
+
+   
