@@ -27,4 +27,36 @@
 
    #>
 
-   
+   Clear-Host
+
+
+
+   function CreateConnection {
+   Import-Module PSSQLite
+   $db = "C:\Users\parwa\Documents\dev\password-manager\password-manager.db"
+
+   $conn = New-SQliteConnection -DataSource $db
+
+   if ($conn.State -eq 'Open') {
+      Write-Host "Connection to database established" -ForegroundColor Green
+   } else {
+      Write-Host "Connection to database failed" -ForegroundColor Red
+   }
+      
+   }
+
+   function QueryDatabase {
+   $query = "SELECT * FROM Login"
+   Write-Host "Querying database..." -ForegroundColor Green
+
+   $result = Invoke-SqliteQuery -DataSource $db -Query $query
+
+   Write-Host "Query complete" -ForegroundColor Green
+   Write-Host "Result:" -ForegroundColor Green
+   $result
+   }
+
+   CreateConnection
+   QueryDatabase
+
+
