@@ -66,4 +66,4 @@ The script consists of several functions and steps:
 
 ## Disclamer
 
-- This script only works for windows because it is using windows forms for the GUI.
+
