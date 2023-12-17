@@ -254,11 +254,12 @@ function ViewNotes {
     $form.Text = "View Notes"
     $form.Size = New-Object System.Drawing.Size(600, 500)
     $form.StartPosition = "CenterScreen"
-    $form.BackColor = [System.Drawing.Color]::LightGray
+    $form.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38)  # Dark One Piece theme color
 
     $tabControl = New-Object System.Windows.Forms.TabControl
     $tabControl.Size = New-Object System.Drawing.Size(580, 300)
     $tabControl.Anchor = [System.Windows.Forms.AnchorStyles]::Top -bor [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right
+    $tabControl.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33)  # Slightly lighter One Piece theme color
     $form.Controls.Add($tabControl)
 
     $deleteTextBox = New-Object System.Windows.Forms.TextBox
@@ -266,12 +267,13 @@ function ViewNotes {
     $deleteTextBox.Size = New-Object System.Drawing.Size(200, 30)
     $deleteTextBox.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
     $deleteTextBox.Text = "Enter ID to delete"
-    $deleteTextBox.ForeColor = [System.Drawing.Color]::Gray
+    $deleteTextBox.ForeColor = [System.Drawing.Color]::White
     $deleteTextBox.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Italic)
+    $deleteTextBox.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33)  # Slightly lighter One Piece theme color
     $deleteTextBox.Add_Enter({
         if ($deleteTextBox.Text -eq "Enter ID to delete") {
             $deleteTextBox.Text = ""
-            $deleteTextBox.ForeColor = [System.Drawing.Color]::Black
+            $deleteTextBox.ForeColor = [System.Drawing.Color]::White
         }
     })
     $form.Controls.Add($deleteTextBox)
@@ -281,7 +283,7 @@ function ViewNotes {
     $buttonDelete.Size = New-Object System.Drawing.Size(100, 30)
     $buttonDelete.Text = "Delete"
     $buttonDelete.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
-    $buttonDelete.BackColor = [System.Drawing.Color]::Firebrick
+    $buttonDelete.BackColor = [System.Drawing.Color]::FromArgb(255, 192, 57, 43)  # One Piece theme orange color
     $buttonDelete.ForeColor = [System.Drawing.Color]::White
     $buttonDelete.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonDelete.Add_Click({
@@ -309,8 +311,8 @@ function ViewNotes {
         $tabPage = New-Object System.Windows.Forms.TabPage
         $tabPage.Name = "$($entry.ID)"
         $tabPage.Text = "$($entry.Titel)"
-        $tabPage.BackColor = [System.Drawing.Color]::Azure
-        $tabPage.ForeColor = [System.Drawing.Color]::Black
+        $tabPage.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
+        $tabPage.ForeColor = [System.Drawing.Color]::White
         $tabPage.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
         $tabControl.Controls.Add($tabPage)
 
@@ -319,8 +321,8 @@ function ViewNotes {
         $textboxNotes.Size = New-Object System.Drawing.Size(560, 250)
         $textboxNotes.Multiline = $true
         $textboxNotes.ReadOnly = $true
-        $textboxNotes.BackColor = [System.Drawing.Color]::White
-        $textboxNotes.ForeColor = [System.Drawing.Color]::Black
+        $textboxNotes.BackColor = [System.Drawing.Color]::FromArgb(255, 52, 73, 94)  # One Piece theme dark blue color
+        $textboxNotes.ForeColor = [System.Drawing.Color]::White
         $textboxNotes.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Regular)
         $tabPage.Controls.Add($textboxNotes)
 
@@ -342,7 +344,7 @@ ID: $($entry.ID)
     $buttonClose.Size = New-Object System.Drawing.Size(100, 30)
     $buttonClose.Text = "Close"
     $buttonClose.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
-    $buttonClose.BackColor = [System.Drawing.Color]::DodgerBlue
+    $buttonClose.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
     $buttonClose.ForeColor = [System.Drawing.Color]::White
     $buttonClose.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonClose.Add_Click({
@@ -362,11 +364,13 @@ function ShowPasswordManagerGui {
     $form.Text = "Password Manager"
     $form.Size = New-Object System.Drawing.Size(400, 350)
     $form.StartPosition = "CenterScreen"
+    $form.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38)  # Dark One Piece theme color
 
     $labelTitle = New-Object System.Windows.Forms.Label
     $labelTitle.Location = New-Object System.Drawing.Point(10, 20)
     $labelTitle.Size = New-Object System.Drawing.Size(120, 20)
     $labelTitle.Text = "Title:"
+    $labelTitle.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelTitle)
 
     $textboxTitle = New-Object System.Windows.Forms.TextBox
@@ -378,6 +382,7 @@ function ShowPasswordManagerGui {
     $labelEmail.Location = New-Object System.Drawing.Point(10, 50)
     $labelEmail.Size = New-Object System.Drawing.Size(120, 20)
     $labelEmail.Text = "Email:"
+    $labelEmail.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelEmail)
 
     $textboxEmail = New-Object System.Windows.Forms.TextBox
@@ -389,6 +394,7 @@ function ShowPasswordManagerGui {
     $labelUsername.Location = New-Object System.Drawing.Point(10, 80)
     $labelUsername.Size = New-Object System.Drawing.Size(120, 20)
     $labelUsername.Text = "Username:"
+    $labelUsername.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelUsername)
 
     $textboxUsername = New-Object System.Windows.Forms.TextBox
@@ -400,6 +406,7 @@ function ShowPasswordManagerGui {
     $labelPassword.Location = New-Object System.Drawing.Point(10, 110)
     $labelPassword.Size = New-Object System.Drawing.Size(120, 20)
     $labelPassword.Text = "Password:"
+    $labelPassword.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelPassword)
 
     $textboxPassword = New-Object System.Windows.Forms.TextBox
@@ -411,6 +418,7 @@ function ShowPasswordManagerGui {
     $labelNotes.Location = New-Object System.Drawing.Point(10, 140)
     $labelNotes.Size = New-Object System.Drawing.Size(120, 20)
     $labelNotes.Text = "Notes:"
+    $labelNotes.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelNotes)
 
     $textboxNotes = New-Object System.Windows.Forms.TextBox
@@ -422,6 +430,7 @@ function ShowPasswordManagerGui {
     $labelUrl.Location = New-Object System.Drawing.Point(10, 170)
     $labelUrl.Size = New-Object System.Drawing.Size(120, 20)
     $labelUrl.Text = "URL:"
+    $labelUrl.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelUrl)
 
     $textboxUrl = New-Object System.Windows.Forms.TextBox
@@ -433,6 +442,7 @@ function ShowPasswordManagerGui {
     $labelTags.Location = New-Object System.Drawing.Point(10, 200)
     $labelTags.Size = New-Object System.Drawing.Size(120, 20)
     $labelTags.Text = "Tags:"
+    $labelTags.ForeColor = [System.Drawing.Color]::White
     $form.Controls.Add($labelTags)
 
     $textboxTags = New-Object System.Windows.Forms.TextBox
@@ -445,6 +455,8 @@ function ShowPasswordManagerGui {
     $buttonViewNotes.Location = New-Object System.Drawing.Point(20, 240)
     $buttonViewNotes.Size = New-Object System.Drawing.Size(100, 30)
     $buttonViewNotes.Text = "View Notes"
+    $buttonViewNotes.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
+    $buttonViewNotes.ForeColor = [System.Drawing.Color]::White
     $buttonViewNotes.Add_Click({
         ViewNotes
     })
@@ -454,6 +466,8 @@ function ShowPasswordManagerGui {
     $buttonAddEntry.Location = New-Object System.Drawing.Point(150, 240)
     $buttonAddEntry.Size = New-Object System.Drawing.Size(100, 30)
     $buttonAddEntry.Text = "Add Entry"
+    $buttonAddEntry.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
+    $buttonAddEntry.ForeColor = [System.Drawing.Color]::White
     $buttonAddEntry.Add_Click({
         $title = $textboxTitle.Text
         $email = $textboxEmail.Text
@@ -480,6 +494,8 @@ function ShowPasswordManagerGui {
     $buttonLogout.Location = New-Object System.Drawing.Point(270, 240)
     $buttonLogout.Size = New-Object System.Drawing.Size(100, 30)
     $buttonLogout.Text = "Logout"
+    $buttonLogout.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
+    $buttonLogout.ForeColor = [System.Drawing.Color]::White
     $buttonLogout.Add_Click({
         $form.DialogResult = 'OK'
     })
