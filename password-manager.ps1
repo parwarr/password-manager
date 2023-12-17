@@ -247,31 +247,81 @@ function ShowLoginGui {
 
 # Function to view notes with tabs for each entry
 function ViewNotes {
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+
     $form = New-Object System.Windows.Forms.Form
     $form.Text = "View Notes"
-    $form.Size = New-Object System.Drawing.Size(400, 300)
+    $form.Size = New-Object System.Drawing.Size(600, 500)
     $form.StartPosition = "CenterScreen"
+    $form.BackColor = [System.Drawing.Color]::LightGray
 
     $tabControl = New-Object System.Windows.Forms.TabControl
-    $tabControl.Size = New-Object System.Drawing.Size(380, 200)
+    $tabControl.Size = New-Object System.Drawing.Size(580, 300)
+    $tabControl.Anchor = [System.Windows.Forms.AnchorStyles]::Top -bor [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right
     $form.Controls.Add($tabControl)
+
+    $deleteTextBox = New-Object System.Windows.Forms.TextBox
+    $deleteTextBox.Location = New-Object System.Drawing.Point(20, 350)
+    $deleteTextBox.Size = New-Object System.Drawing.Size(200, 30)
+    $deleteTextBox.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
+    $deleteTextBox.Text = "Enter ID to delete"
+    $deleteTextBox.ForeColor = [System.Drawing.Color]::Gray
+    $deleteTextBox.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Italic)
+    $deleteTextBox.Add_Enter({
+        if ($deleteTextBox.Text -eq "Enter ID to delete") {
+            $deleteTextBox.Text = ""
+            $deleteTextBox.ForeColor = [System.Drawing.Color]::Black
+        }
+    })
+    $form.Controls.Add($deleteTextBox)
+
+    $buttonDelete = New-Object System.Windows.Forms.Button
+    $buttonDelete.Location = New-Object System.Drawing.Point(230, 350)
+    $buttonDelete.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonDelete.Text = "Delete"
+    $buttonDelete.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
+    $buttonDelete.BackColor = [System.Drawing.Color]::Firebrick
+    $buttonDelete.ForeColor = [System.Drawing.Color]::White
+    $buttonDelete.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
+    $buttonDelete.Add_Click({
+        $deleteId = $deleteTextBox.Text
+        foreach ($entry in $entriesResult) {
+            if ($deleteId -eq $entry.ID) {
+                # Delete the entire row from the database using the ID
+                $deleteQuery = "DELETE FROM PasswortManager WHERE Id = '$deleteId'"
+                Invoke-SqliteQuery -DataSource $db -Query $deleteQuery
+
+                # Remove the tab from the window
+                $tabControl.TabPages.RemoveByKey("$deleteId")
+                return
+            }
+        }
+        Write-Host "Invalid ID. Deletion canceled."
+    })
+    $form.Controls.Add($buttonDelete)
 
     # Fetch entries associated with the user's loginId
     $entriesQuery = "SELECT * FROM PasswortManager WHERE LoginId = '$global:loggedInUserId'"
     $entriesResult = Invoke-SqliteQuery -DataSource $db -Query $entriesQuery
 
-    $tabIndex = 1
     foreach ($entry in $entriesResult) {
         $tabPage = New-Object System.Windows.Forms.TabPage
-        $tabPage.Text = "Tab $tabIndex"
+        $tabPage.Name = "$($entry.ID)"
+        $tabPage.Text = "$($entry.Titel)"
+        $tabPage.BackColor = [System.Drawing.Color]::Azure
+        $tabPage.ForeColor = [System.Drawing.Color]::Black
+        $tabPage.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
         $tabControl.Controls.Add($tabPage)
-        $tabIndex++
 
         $textboxNotes = New-Object System.Windows.Forms.TextBox
         $textboxNotes.Location = New-Object System.Drawing.Point(10, 20)
-        $textboxNotes.Size = New-Object System.Drawing.Size(360, 150)
+        $textboxNotes.Size = New-Object System.Drawing.Size(560, 250)
         $textboxNotes.Multiline = $true
         $textboxNotes.ReadOnly = $true
+        $textboxNotes.BackColor = [System.Drawing.Color]::White
+        $textboxNotes.ForeColor = [System.Drawing.Color]::Black
+        $textboxNotes.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Regular)
         $tabPage.Controls.Add($textboxNotes)
 
         # Display details of the entry
@@ -283,13 +333,18 @@ Password: $($entry.Password)
 Notes: $($entry.Notes)
 URL: $($entry.Url)
 Tags: $($entry.Tags)
+ID: $($entry.ID)
 "@
     }
 
     $buttonClose = New-Object System.Windows.Forms.Button
-    $buttonClose.Location = New-Object System.Drawing.Point(150, 240)
+    $buttonClose.Location = New-Object System.Drawing.Point(350, 350)
     $buttonClose.Size = New-Object System.Drawing.Size(100, 30)
     $buttonClose.Text = "Close"
+    $buttonClose.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
+    $buttonClose.BackColor = [System.Drawing.Color]::DodgerBlue
+    $buttonClose.ForeColor = [System.Drawing.Color]::White
+    $buttonClose.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonClose.Add_Click({
         $form.Close()
     })
@@ -298,10 +353,6 @@ Tags: $($entry.Tags)
     $form.ShowDialog() | Out-Null
 }
 
-
-
-
-
 # Function to show the password manager GUI
 function ShowPasswordManagerGui {
     Add-Type -AssemblyName System.Windows.Forms
@@ -309,7 +360,7 @@ function ShowPasswordManagerGui {
 
     $form = New-Object System.Windows.Forms.Form
     $form.Text = "Password Manager"
-    $form.Size = New-Object System.Drawing.Size(400, 300)
+    $form.Size = New-Object System.Drawing.Size(400, 350)
     $form.StartPosition = "CenterScreen"
 
     $labelTitle = New-Object System.Windows.Forms.Label
