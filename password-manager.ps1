@@ -125,57 +125,66 @@ function ShowLoginGui {
 
     $form = New-Object System.Windows.Forms.Form
     $form.Text = "Login"
-    $form.Size = New-Object System.Drawing.Size(290, 250)
+    $form.Size = New-Object System.Drawing.Size(350, 250)
     $form.StartPosition = "CenterScreen"
+    $form.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38)  # Dark One Piece theme color
 
     $tabControl = New-Object System.Windows.Forms.TabControl
-    $tabControl.Size = New-Object System.Drawing.Size(260, 180)
+    $tabControl.Size = New-Object System.Drawing.Size(320, 180)
+    $tabControl.Location = New-Object System.Drawing.Point(10, 10)
     $form.Controls.Add($tabControl)
 
     # Sign In Tab
     $tabSignIn = New-Object System.Windows.Forms.TabPage
     $tabSignIn.Text = "Sign In"
+    $tabSignIn.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33)  # Slightly lighter One Piece theme color
+    $tabSignIn.ForeColor = [System.Drawing.Color]::LightGray
     $tabControl.Controls.Add($tabSignIn)
 
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 20)
-    $label.Size = New-Object System.Drawing.Size(260, 20)
+    $label.Size = New-Object System.Drawing.Size(300, 20)
     $label.Text = "Username:"
+    $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignIn.Controls.Add($label)
 
     $textboxUsername = New-Object System.Windows.Forms.TextBox
     $textboxUsername.Location = New-Object System.Drawing.Point(10, 40)
-    $textboxUsername.Size = New-Object System.Drawing.Size(240, 20)
+    $textboxUsername.Size = New-Object System.Drawing.Size(300, 20)
+    $textboxUsername.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 44, 48)  # Darker One Piece theme color
+    $textboxUsername.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignIn.Controls.Add($textboxUsername)
 
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 70)
-    $label.Size = New-Object System.Drawing.Size(260, 20)
+    $label.Size = New-Object System.Drawing.Size(300, 20)
     $label.Text = "Password:"
+    $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignIn.Controls.Add($label)
 
     $textboxPassword = New-Object System.Windows.Forms.MaskedTextBox
     $textboxPassword.Location = New-Object System.Drawing.Point(10, 90)
-    $textboxPassword.Size = New-Object System.Drawing.Size(240, 20)
+    $textboxPassword.Size = New-Object System.Drawing.Size(300, 20)
     $textboxPassword.PasswordChar = '*'
+    $textboxPassword.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 44, 48)  # Darker One Piece theme color
+    $textboxPassword.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignIn.Controls.Add($textboxPassword)
 
     $buttonSignIn = New-Object System.Windows.Forms.Button
-    $buttonSignIn.Location = New-Object System.Drawing.Point(75, 120)
-    $buttonSignIn.Size = New-Object System.Drawing.Size(75, 23)
+    $buttonSignIn.Location = New-Object System.Drawing.Point(120, 120)
+    $buttonSignIn.Size = New-Object System.Drawing.Size(80, 30)
     $buttonSignIn.Text = "Sign In"
+    $buttonSignIn.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  # One Piece theme blue color
+    $buttonSignIn.ForeColor = [System.Drawing.Color]::White
+    $buttonSignIn.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
+    $buttonSignIn.FlatAppearance.BorderSize = 0
     $buttonSignIn.Add_Click({
         $username = $textboxUsername.Text
         $password = $textboxPassword.Text
         Login -username $username -password $password
 
         if (-not $global:loggedInUserId) {
-            $retry = [System.Windows.Forms.MessageBox]::Show("Login failed. Retry?", "Retry", [System.Windows.Forms.MessageBoxButtons]::RetryCancel, [System.Windows.Forms.MessageBoxIcon]::Error)
-
-            if ($retry -eq [System.Windows.Forms.DialogResult]::Cancel) {
-                $form.Close()
-                exit 1
-            }
+            [System.Windows.Forms.MessageBox]::Show("Login failed. Please retry.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
         } else {
             $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
             $form.Close()
@@ -187,47 +196,54 @@ function ShowLoginGui {
     # Sign Up Tab
     $tabSignUp = New-Object System.Windows.Forms.TabPage
     $tabSignUp.Text = "Sign Up"
+    $tabSignUp.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33)  # Slightly lighter One Piece theme color
+    $tabSignUp.ForeColor = [System.Drawing.Color]::LightGray
     $tabControl.Controls.Add($tabSignUp)
 
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 20)
-    $label.Size = New-Object System.Drawing.Size(260, 20)
+    $label.Size = New-Object System.Drawing.Size(300, 20)
     $label.Text = "New Username:"
+    $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($label)
 
     $textboxNewUsername = New-Object System.Windows.Forms.TextBox
     $textboxNewUsername.Location = New-Object System.Drawing.Point(10, 40)
-    $textboxNewUsername.Size = New-Object System.Drawing.Size(240, 20)
+    $textboxNewUsername.Size = New-Object System.Drawing.Size(300, 20)
+    $textboxNewUsername.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 44, 48)  # Darker One Piece theme color
+    $textboxNewUsername.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($textboxNewUsername)
 
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 70)
-    $label.Size = New-Object System.Drawing.Size(260, 20)
+    $label.Size = New-Object System.Drawing.Size(300, 20)
     $label.Text = "New Password:"
+    $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($label)
 
     $textboxNewPassword = New-Object System.Windows.Forms.MaskedTextBox
     $textboxNewPassword.Location = New-Object System.Drawing.Point(10, 90)
-    $textboxNewPassword.Size = New-Object System.Drawing.Size(240, 20)
+    $textboxNewPassword.Size = New-Object System.Drawing.Size(300, 20)
     $textboxNewPassword.PasswordChar = '*'
+    $textboxNewPassword.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 44, 48)  # Darker One Piece theme color
+    $textboxNewPassword.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($textboxNewPassword)
 
     $buttonSignUp = New-Object System.Windows.Forms.Button
-    $buttonSignUp.Location = New-Object System.Drawing.Point(75, 120)
-    $buttonSignUp.Size = New-Object System.Drawing.Size(75, 23)
+    $buttonSignUp.Location = New-Object System.Drawing.Point(120, 120)
+    $buttonSignUp.Size = New-Object System.Drawing.Size(80, 30)
     $buttonSignUp.Text = "Sign Up"
+    $buttonSignUp.BackColor = [System.Drawing.Color]::FromArgb(255, 26, 188, 156)  # Turquoise color
+    $buttonSignUp.ForeColor = [System.Drawing.Color]::White
+    $buttonSignUp.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
+    $buttonSignUp.FlatAppearance.BorderSize = 0
     $buttonSignUp.Add_Click({
         $newUsername = $textboxNewUsername.Text
         $newPassword = $textboxNewPassword.Text
         CreateLogin -username $newUsername -password $newPassword
 
         if (-not $global:loggedInUserId) {
-            $retry = [System.Windows.Forms.MessageBox]::Show("Login failed. Retry?", "Retry", [System.Windows.Forms.MessageBoxButtons]::RetryCancel, [System.Windows.Forms.MessageBoxIcon]::Error)
-
-            if ($retry -eq [System.Windows.Forms.DialogResult]::Cancel) {
-                $form.Close()
-                exit 1
-            }
+            [System.Windows.Forms.MessageBox]::Show("Sign up failed. Please retry.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
         } else {
             $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
             $form.Close()
