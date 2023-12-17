@@ -15,20 +15,19 @@
 # Version
 # 1.0.1
 
-# To-Do: 
-# Plan the project
-# Ablaufdiagramm
-# Write the code
-# Test the code
-# Publish the code
-
 Clear-Host
+
+# Import the PSSQLite module
+Import-Module PSSQLite
+
+# Set Database Path
+$db = "C:\Users\parwa\Documents\dev\password-manager\password-manager.db"
+
+# Global variable to store the logged-in user ID
+$global:loggedInUserId = $null
 
 # Function to create a database connection
 function CreateDatabaseConnection {
-    Import-Module PSSQLite
-    $db = "C:\Users\parwa\Documents\dev\password-manager\password-manager.db"
-
     $conn = New-SQliteConnection -DataSource $db
 
     if ($conn.State -eq 'Open') {
@@ -51,6 +50,7 @@ function CreateLogin {
     Invoke-SqliteQuery -DataSource $db -Query $query
 
     Write-Host "Login created" -ForegroundColor Green
+
 }
 
 # Function to login
@@ -59,43 +59,53 @@ function Login {
         [string]$username,
         [string]$password
     )
-    Write-Host "Logging in..." -ForegroundColor Green
-    $query = "SELECT * FROM Login WHERE Username = '$username' AND Password = '$password'"
 
-    if (Invoke-SqliteQuery -DataSource $db -Query $query) {
-        Write-Host "Login successful" -ForegroundColor Green
-    } else {
-        Write-Host "Login failed" -ForegroundColor Red
+    $maxAttempts = 5
 
-        $create = Read-Host "Create new login? (y/n)"
-        if ($create -eq "y") {
-            CreateLogin -username $username -password $password
+    for ($attempts = 1; $attempts -le $maxAttempts; $attempts++) {
+        Write-Host "Logging in... (Attempt $attempts of $maxAttempts)" -ForegroundColor Green
+        $query = "SELECT * FROM Login WHERE Username = '$username' AND Password = '$password'"
+        $result = Invoke-SqliteQuery -DataSource $db -Query $query
+
+        if ($result) {
+            $global:loggedInUserId = $result.Id
+            Write-Host "Login successful" -ForegroundColor Green
+            return
         } else {
-            Write-Host "Login aborted" -ForegroundColor Red
+            Write-Host "Login failed" -ForegroundColor Red
         }
     }
 }
 
-# Function to query the database
-function QueryDatabase {
-    $query = "SELECT * FROM Login"
-    Write-Host "Querying database..." -ForegroundColor Green
+# Function to add an entry
+function AddEntry {
+    param (
+        [string]$title,
+        [string]$email,
+        [string]$username,
+        [string]$notes,
+        [string]$url,
+        [string]$tags
+    )
 
-    $result = Invoke-SqliteQuery -DataSource $db -Query $query
+    if (-not $global:loggedInUserId) {
+        Write-Host "Error: User not logged in. Please log in first." -ForegroundColor Red
+        return
+    }
 
-    Write-Host "Query complete" -ForegroundColor Green
-    Write-Host "Result:" -ForegroundColor Green
-    $result
-}
+    $query = @"
+    INSERT INTO PasswortManager (Titel, Email, Username, Notes, Url, Tags, LoginId)
+    VALUES ('$title', '$email', '$username', '$notes', '$url', '$tags', '$global:loggedInUserId')
+"@
 
-# Function to toggle between tabs
-function ToggleTabs {
-    if ($activeTab -eq "SignIn") {
-        $activeTab = "SignUp"
-    } else {
-        $activeTab = "SignIn"
+    try {
+        Invoke-SqliteQuery -DataSource $db -Query $query
+        Write-Host "Entry added" -ForegroundColor Green
+    } catch {
+        Write-Host "Error: $_" -ForegroundColor Red
     }
 }
+
 
 # Function to show the login GUI
 function ShowLoginGui {
@@ -198,15 +208,131 @@ function ShowLoginGui {
 
     if ($result -eq [System.Windows.Forms.DialogResult]::OK)
     {
-        # Handle any post-login actions if needed
+        ShowPasswordManagerGui
     }
 }
+
+function ShowPasswordManagerGui {
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+
+    $form = New-Object System.Windows.Forms.Form
+    $form.Text = "Password Manager"
+    $form.Size = New-Object System.Drawing.Size(400, 300)
+    $form.StartPosition = "CenterScreen"
+
+    $labelTitle = New-Object System.Windows.Forms.Label
+    $labelTitle.Location = New-Object System.Drawing.Point(10, 20)
+    $labelTitle.Size = New-Object System.Drawing.Size(120, 20)
+    $labelTitle.Text = "Title:"
+    $form.Controls.Add($labelTitle)
+
+    $textboxTitle = New-Object System.Windows.Forms.TextBox
+    $textboxTitle.Location = New-Object System.Drawing.Point(140, 20)
+    $textboxTitle.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxTitle)
+
+    $labelEmail = New-Object System.Windows.Forms.Label
+    $labelEmail.Location = New-Object System.Drawing.Point(10, 50)
+    $labelEmail.Size = New-Object System.Drawing.Size(120, 20)
+    $labelEmail.Text = "Email:"
+    $form.Controls.Add($labelEmail)
+
+    $textboxEmail = New-Object System.Windows.Forms.TextBox
+    $textboxEmail.Location = New-Object System.Drawing.Point(140, 50)
+    $textboxEmail.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxEmail)
+
+    $labelUsername = New-Object System.Windows.Forms.Label
+    $labelUsername.Location = New-Object System.Drawing.Point(10, 80)
+    $labelUsername.Size = New-Object System.Drawing.Size(120, 20)
+    $labelUsername.Text = "Username:"
+    $form.Controls.Add($labelUsername)
+
+    $textboxUsername = New-Object System.Windows.Forms.TextBox
+    $textboxUsername.Location = New-Object System.Drawing.Point(140, 80)
+    $textboxUsername.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxUsername)
+
+    $labelNotes = New-Object System.Windows.Forms.Label
+    $labelNotes.Location = New-Object System.Drawing.Point(10, 110)
+    $labelNotes.Size = New-Object System.Drawing.Size(120, 20)
+    $labelNotes.Text = "Notes:"
+    $form.Controls.Add($labelNotes)
+
+    $textboxNotes = New-Object System.Windows.Forms.TextBox
+    $textboxNotes.Location = New-Object System.Drawing.Point(140, 110)
+    $textboxNotes.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxNotes)
+
+    $labelUrl = New-Object System.Windows.Forms.Label
+    $labelUrl.Location = New-Object System.Drawing.Point(10, 140)
+    $labelUrl.Size = New-Object System.Drawing.Size(120, 20)
+    $labelUrl.Text = "URL:"
+    $form.Controls.Add($labelUrl)
+
+    $textboxUrl = New-Object System.Windows.Forms.TextBox
+    $textboxUrl.Location = New-Object System.Drawing.Point(140, 140)
+    $textboxUrl.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxUrl)
+
+    $labelTags = New-Object System.Windows.Forms.Label
+    $labelTags.Location = New-Object System.Drawing.Point(10, 170)
+    $labelTags.Size = New-Object System.Drawing.Size(120, 20)
+    $labelTags.Text = "Tags:"
+    $form.Controls.Add($labelTags)
+
+    $textboxTags = New-Object System.Windows.Forms.TextBox
+    $textboxTags.Location = New-Object System.Drawing.Point(140, 170)
+    $textboxTags.Size = New-Object System.Drawing.Size(200, 20)
+    $form.Controls.Add($textboxTags)
+
+    $buttonAddEntry = New-Object System.Windows.Forms.Button
+    $buttonAddEntry.Location = New-Object System.Drawing.Point(150, 210)
+    $buttonAddEntry.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonAddEntry.Text = "Add Entry"
+    $buttonAddEntry.Add_Click({
+        $title = $textboxTitle.Text
+        $email = $textboxEmail.Text
+        $username = $textboxUsername.Text
+        $notes = $textboxNotes.Text
+        $url = $textboxUrl.Text
+        $tags = $textboxTags.Text
+        AddEntry -title $title -email $email -username $username -notes $notes -url $url -tags $tags
+
+        # Clear the input fields
+        $textboxTitle.Text = ""
+        $textboxEmail.Text = ""
+        $textboxUsername.Text = ""
+        $textboxNotes.Text = ""
+        $textboxUrl.Text = ""
+        $textboxTags.Text = ""
+    })
+    $form.Controls.Add($buttonAddEntry)
+
+    # Logout button
+    $buttonLogout = New-Object System.Windows.Forms.Button
+    $buttonLogout.Location = New-Object System.Drawing.Point(270, 210)
+    $buttonLogout.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonLogout.Text = "Logout"
+    $buttonLogout.Add_Click({
+        $form.DialogResult = 'OK'
+    })
+    $form.Controls.Add($buttonLogout)
+
+    $result = $form.ShowDialog()
+
+    if ($result -eq 'OK') {
+        $form.Close()
+        ShowLoginGui   # Show the login window
+    }
+}
+
 
 # Main script execution
 try {
     # Initialize the database connection
     CreateDatabaseConnection
-
     # Show the login GUI
     ShowLoginGui
 }
