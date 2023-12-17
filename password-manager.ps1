@@ -245,6 +245,62 @@ function ShowLoginGui {
     }
 }
 
+# Function to view notes with tabs for each entry
+function ViewNotes {
+    $form = New-Object System.Windows.Forms.Form
+    $form.Text = "View Notes"
+    $form.Size = New-Object System.Drawing.Size(400, 300)
+    $form.StartPosition = "CenterScreen"
+
+    $tabControl = New-Object System.Windows.Forms.TabControl
+    $tabControl.Size = New-Object System.Drawing.Size(380, 200)
+    $form.Controls.Add($tabControl)
+
+    # Fetch entries associated with the user's loginId
+    $entriesQuery = "SELECT * FROM PasswortManager WHERE LoginId = '$global:loggedInUserId'"
+    $entriesResult = Invoke-SqliteQuery -DataSource $db -Query $entriesQuery
+
+    $tabIndex = 1
+    foreach ($entry in $entriesResult) {
+        $tabPage = New-Object System.Windows.Forms.TabPage
+        $tabPage.Text = "Tab $tabIndex"
+        $tabControl.Controls.Add($tabPage)
+        $tabIndex++
+
+        $textboxNotes = New-Object System.Windows.Forms.TextBox
+        $textboxNotes.Location = New-Object System.Drawing.Point(10, 20)
+        $textboxNotes.Size = New-Object System.Drawing.Size(360, 150)
+        $textboxNotes.Multiline = $true
+        $textboxNotes.ReadOnly = $true
+        $tabPage.Controls.Add($textboxNotes)
+
+        # Display details of the entry
+        $textboxNotes.Text = @"
+Title: $($entry.Titel)
+Email: $($entry.Email)
+Username: $($entry.Username)
+Password: $($entry.Password)
+Notes: $($entry.Notes)
+URL: $($entry.Url)
+Tags: $($entry.Tags)
+"@
+    }
+
+    $buttonClose = New-Object System.Windows.Forms.Button
+    $buttonClose.Location = New-Object System.Drawing.Point(150, 240)
+    $buttonClose.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonClose.Text = "Close"
+    $buttonClose.Add_Click({
+        $form.Close()
+    })
+    $form.Controls.Add($buttonClose)
+
+    $form.ShowDialog() | Out-Null
+}
+
+
+
+
 
 # Function to show the password manager GUI
 function ShowPasswordManagerGui {
@@ -333,6 +389,16 @@ function ShowPasswordManagerGui {
     $textboxTags.Size = New-Object System.Drawing.Size(200, 20)
     $form.Controls.Add($textboxTags)
 
+    # View Notes button
+    $buttonViewNotes = New-Object System.Windows.Forms.Button
+    $buttonViewNotes.Location = New-Object System.Drawing.Point(20, 240)
+    $buttonViewNotes.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonViewNotes.Text = "View Notes"
+    $buttonViewNotes.Add_Click({
+        ViewNotes
+    })
+    $form.Controls.Add($buttonViewNotes)
+
     $buttonAddEntry = New-Object System.Windows.Forms.Button
     $buttonAddEntry.Location = New-Object System.Drawing.Point(150, 240)
     $buttonAddEntry.Size = New-Object System.Drawing.Size(100, 30)
@@ -375,6 +441,7 @@ function ShowPasswordManagerGui {
         ShowLoginGui   # Show the login window
     }
 }
+
 
 # Main script execution
 try {
