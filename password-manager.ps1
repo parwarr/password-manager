@@ -106,7 +106,7 @@ function AddEntry {
     }
 
     $query = @"
-    INSERT INTO PasswortManager (Titel, Email, Username, Password, Notes, Url, Tags, LoginId)
+    INSERT INTO PasswortManager (Title, Email, Username, Password, Notes, Url, Tags, LoginId)
     VALUES ('$title', '$email', '$username', '$password', '$notes', '$url', '$tags', '$global:loggedInUserId')
 "@
 
@@ -203,7 +203,7 @@ function ShowLoginGui {
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 20)
     $label.Size = New-Object System.Drawing.Size(300, 20)
-    $label.Text = "New Username:"
+    $label.Text = "Username:"
     $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($label)
 
@@ -217,7 +217,7 @@ function ShowLoginGui {
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 70)
     $label.Size = New-Object System.Drawing.Size(300, 20)
-    $label.Text = "New Password:"
+    $label.Text = "Password:"
     $label.ForeColor = [System.Drawing.Color]::LightGray
     $tabSignUp.Controls.Add($label)
 
@@ -282,12 +282,12 @@ function ViewNotes {
     $deleteTextBox.Location = New-Object System.Drawing.Point(20, 350)
     $deleteTextBox.Size = New-Object System.Drawing.Size(200, 30)
     $deleteTextBox.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
-    $deleteTextBox.Text = "Enter ID to delete"
+    $deleteTextBox.Text = "Enter ID to delete or edit"
     $deleteTextBox.ForeColor = [System.Drawing.Color]::White
     $deleteTextBox.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Italic)
     $deleteTextBox.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33) 
     $deleteTextBox.Add_Enter({
-        if ($deleteTextBox.Text -eq "Enter ID to delete") {
+        if ($deleteTextBox.Text -eq "Enter ID to delete or edit") {
             $deleteTextBox.Text = ""
             $deleteTextBox.ForeColor = [System.Drawing.Color]::White
         }
@@ -295,7 +295,7 @@ function ViewNotes {
     $form.Controls.Add($deleteTextBox)
 
     $buttonDelete = New-Object System.Windows.Forms.Button
-    $buttonDelete.Location = New-Object System.Drawing.Point(230, 350)
+    $buttonDelete.Location = New-Object System.Drawing.Point(230, 390)
     $buttonDelete.Size = New-Object System.Drawing.Size(100, 30)
     $buttonDelete.Text = "Delete"
     $buttonDelete.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
@@ -319,6 +319,35 @@ function ViewNotes {
     })
     $form.Controls.Add($buttonDelete)
 
+    # New button for editing notes
+    $buttonEdit = New-Object System.Windows.Forms.Button
+    $buttonEdit.Location = New-Object System.Drawing.Point(230, 350)
+    $buttonEdit.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonEdit.Text = "Edit"
+    $buttonEdit.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left
+    $buttonEdit.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  
+    $buttonEdit.ForeColor = [System.Drawing.Color]::White
+    $buttonEdit.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
+    $buttonEdit.Add_Click({
+        $editId = $deleteTextBox.Text
+        foreach ($entry in $entriesResult) {
+            if ($editId -eq $entry.ID) {
+                # Open a new form for editing the selected note
+                EditNoteForm $entry
+
+                # Close the current form
+                $form.Close()
+
+                # Re-open the form to refresh entries
+                ViewNotes
+
+                return
+            }
+        }
+        Write-Host "Invalid ID. Editing canceled."
+    })
+    $form.Controls.Add($buttonEdit)
+
     # Fetch entries associated with the user's loginId
     $entriesQuery = "SELECT * FROM PasswortManager WHERE LoginId = '$global:loggedInUserId'"
     $entriesResult = Invoke-SqliteQuery -DataSource $db -Query $entriesQuery
@@ -326,7 +355,7 @@ function ViewNotes {
     foreach ($entry in $entriesResult) {
         $tabPage = New-Object System.Windows.Forms.TabPage
         $tabPage.Name = "$($entry.ID)"
-        $tabPage.Text = "$($entry.Titel)"
+        $tabPage.Text = "$($entry.Title)"
         $tabPage.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185) 
         $tabPage.ForeColor = [System.Drawing.Color]::White
         $tabPage.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
@@ -344,7 +373,7 @@ function ViewNotes {
 
         # Display details of the entry
         $textboxNotes.Text = @"
-Title: $($entry.Titel)
+Title: $($entry.Title)
 Email: $($entry.Email)
 Username: $($entry.Username)
 Password: $($entry.Password)
@@ -370,6 +399,143 @@ ID: $($entry.ID)
 
     $form.ShowDialog() | Out-Null
 }
+
+# Function to create a form for editing notes
+function EditNoteForm {
+    param (
+        [Object]$entry
+    )
+
+    $editForm = New-Object System.Windows.Forms.Form
+    $editForm.Text = "Edit Note"
+    $editForm.Size = New-Object System.Drawing.Size(400, 400)
+    $editForm.StartPosition = "CenterScreen"
+    $editForm.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38) 
+
+    # Add controls (textboxes, labels, buttons, etc.) for editing notes
+
+    $labelTitle = New-Object System.Windows.Forms.Label
+    $labelTitle.Text = "Title:"
+    $labelTitle.Location = New-Object System.Drawing.Point(20, 20)
+    $labelTitle.Size = New-Object System.Drawing.Size(100, 20)
+    $labelTitle.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelTitle)
+
+    $textboxTitle = New-Object System.Windows.Forms.TextBox
+    $textboxTitle.Location = New-Object System.Drawing.Point(150, 20)
+    $textboxTitle.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxTitle.Text = $entry.Title
+    $editForm.Controls.Add($textboxTitle)
+
+    $labelEmail = New-Object System.Windows.Forms.Label
+    $labelEmail.Text = "Email:"
+    $labelEmail.Location = New-Object System.Drawing.Point(20, 60)
+    $labelEmail.Size = New-Object System.Drawing.Size(100, 20)
+    $labelEmail.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelEmail)
+
+    $textboxEmail = New-Object System.Windows.Forms.TextBox
+    $textboxEmail.Location = New-Object System.Drawing.Point(150, 60)
+    $textboxEmail.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxEmail.Text = $entry.Email
+    $editForm.Controls.Add($textboxEmail)
+
+    $labelUsername = New-Object System.Windows.Forms.Label
+    $labelUsername.Text = "Username:"
+    $labelUsername.Location = New-Object System.Drawing.Point(20, 100)
+    $labelUsername.Size = New-Object System.Drawing.Size(100, 20)
+    $labelUsername.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelUsername)
+
+    $textboxUsername = New-Object System.Windows.Forms.TextBox
+    $textboxUsername.Location = New-Object System.Drawing.Point(150, 100)
+    $textboxUsername.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxUsername.Text = $entry.Username
+    $editForm.Controls.Add($textboxUsername)
+
+    $labelPassword = New-Object System.Windows.Forms.Label
+    $labelPassword.Text = "Password:"
+    $labelPassword.Location = New-Object System.Drawing.Point(20, 140)
+    $labelPassword.Size = New-Object System.Drawing.Size(100, 20)
+    $labelPassword.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelPassword)
+
+    $textboxPassword = New-Object System.Windows.Forms.TextBox
+    $textboxPassword.Location = New-Object System.Drawing.Point(150, 140)
+    $textboxPassword.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxPassword.Text = $entry.Password
+    $editForm.Controls.Add($textboxPassword)
+
+    $labelNotes = New-Object System.Windows.Forms.Label
+    $labelNotes.Text = "Notes:"
+    $labelNotes.Location = New-Object System.Drawing.Point(20, 180)
+    $labelNotes.Size = New-Object System.Drawing.Size(100, 20)
+    $labelNotes.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelNotes)
+
+    $textboxNotes = New-Object System.Windows.Forms.TextBox
+    $textboxNotes.Location = New-Object System.Drawing.Point(150, 180)
+    $textboxNotes.Size = New-Object System.Drawing.Size(200, 80)
+    $textboxNotes.Multiline = $true
+    $textboxNotes.Text = $entry.Notes
+    $editForm.Controls.Add($textboxNotes)
+
+    $labelURL = New-Object System.Windows.Forms.Label
+    $labelURL.Text = "URL:"
+    $labelURL.Location = New-Object System.Drawing.Point(20, 280)
+    $labelURL.Size = New-Object System.Drawing.Size(100, 20)
+    $labelURL.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelURL)
+
+    $textboxURL = New-Object System.Windows.Forms.TextBox
+    $textboxURL.Location = New-Object System.Drawing.Point(150, 280)
+    $textboxURL.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxURL.Text = $entry.URL
+    $editForm.Controls.Add($textboxURL)
+
+    $labelTags = New-Object System.Windows.Forms.Label
+    $labelTags.Text = "Tags:"
+    $labelTags.Location = New-Object System.Drawing.Point(20, 320)
+    $labelTags.Size = New-Object System.Drawing.Size(100, 20)
+    $labelTags.ForeColor = [System.Drawing.Color]::White
+    $editForm.Controls.Add($labelTags)
+
+    $textboxTags = New-Object System.Windows.Forms.TextBox
+    $textboxTags.Location = New-Object System.Drawing.Point(150, 320)
+    $textboxTags.Size = New-Object System.Drawing.Size(200, 20)
+    $textboxTags.Text = $entry.Tags
+    $editForm.Controls.Add($textboxTags)
+
+    $buttonSave = New-Object System.Windows.Forms.Button
+    $buttonSave.Location = New-Object System.Drawing.Point(150, 360)
+    $buttonSave.Size = New-Object System.Drawing.Size(100, 30)
+    $buttonSave.Text = "Save"
+    $buttonSave.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  
+    $buttonSave.ForeColor = [System.Drawing.Color]::White
+    $buttonSave.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
+    $buttonSave.Add_Click({
+        # Save the edited note to the database
+        $editedEntry = @{
+            'Title'    = $textboxTitle.Text
+            'Email'    = $textboxEmail.Text
+            'Username' = $textboxUsername.Text
+            'Password' = $textboxPassword.Text
+            'Notes'    = $textboxNotes.Text
+            'URL'      = $textboxURL.Text
+            'Tags'     = $textboxTags.Text
+        }
+
+        $updateQuery = "UPDATE PasswortManager SET Title = '$($editedEntry.Title)', Email = '$($editedEntry.Email)', Username = '$($editedEntry.Username)', Password = '$($editedEntry.Password)', Notes = '$($editedEntry.Notes)', URL = '$($editedEntry.URL)', Tags = '$($editedEntry.Tags)' WHERE Id = '$($entry.ID)'"
+
+        Invoke-SqliteQuery -DataSource $db -Query $updateQuery
+
+        $editForm.Close()
+    })
+    $editForm.Controls.Add($buttonSave)
+
+    $editForm.ShowDialog() | Out-Null
+}
+
 
 # Function to show the password manager GUI
 function ShowPasswordManagerGui {
