@@ -187,7 +187,7 @@ function ShowLoginGui {
             [System.Windows.Forms.MessageBox]::Show("Login failed. Please retry.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
         } else {
             $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
-            $form.Close()
+            $form.Dispose()
             ShowPasswordManagerGui
         }
     })
@@ -246,7 +246,7 @@ function ShowLoginGui {
             [System.Windows.Forms.MessageBox]::Show("Sign up failed. Please retry.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
         } else {
             $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
-            $form.Close()
+            $form.Dispose()
             ShowPasswordManagerGui
         }
     })
@@ -333,15 +333,13 @@ function ViewNotes {
         foreach ($entry in $entriesResult) {
             if ($editId -eq $entry.ID) {
                 # Open a new form for editing the selected note
-                EditNoteForm $entry
+            EditNoteForm $entry
 
-                # Close the current form
-                $form.Close()
+            # Dispose of the current form
+            $form.Dispose()
 
-                # Re-open the form to refresh entries
-                ViewNotes
-
-                return
+            # Re-open the form to refresh entries
+            ViewNotes
             }
         }
         Write-Host "Invalid ID. Editing canceled."
@@ -393,7 +391,7 @@ ID: $($entry.ID)
     $buttonClose.ForeColor = [System.Drawing.Color]::White
     $buttonClose.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonClose.Add_Click({
-        $form.Close()
+        $form.Dispose()
     })
     $form.Controls.Add($buttonClose)
 
