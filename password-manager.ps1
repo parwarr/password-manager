@@ -340,6 +340,7 @@ function ViewNotes {
 
             # Re-open the form to refresh entries
             ViewNotes
+            return
             }
         }
         Write-Host "Invalid ID. Editing canceled."
@@ -406,7 +407,7 @@ function EditNoteForm {
 
     $editForm = New-Object System.Windows.Forms.Form
     $editForm.Text = "Edit Note"
-    $editForm.Size = New-Object System.Drawing.Size(400, 400)
+    $editForm.Size = New-Object System.Drawing.Size(400, 500)
     $editForm.StartPosition = "CenterScreen"
     $editForm.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38) 
 
