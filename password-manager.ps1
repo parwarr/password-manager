@@ -58,7 +58,7 @@ function CreateLogin {
 
     # If the user doesn't exist, create a new user
     $createUserQuery = "INSERT INTO Login (Username, Password) VALUES ('$username', '$password')"
-    $createdUser = Invoke-SqliteNonQuery -DataSource $db -Query $createUserQuery
+    $createdUser = Invoke-SqliteQuery -DataSource $db -Query $createUserQuery
 
     if ($createdUser -eq 1) {
         Write-Host "User creation successful" -ForegroundColor Green
@@ -410,8 +410,6 @@ function EditNoteForm {
     $editForm.Size = New-Object System.Drawing.Size(400, 500)
     $editForm.StartPosition = "CenterScreen"
     $editForm.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38) 
-
-    # Add controls (textboxes, labels, buttons, etc.) for editing notes
 
     $labelTitle = New-Object System.Windows.Forms.Label
     $labelTitle.Text = "Title:"
