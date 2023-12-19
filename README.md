@@ -11,18 +11,23 @@ The GUI will be simple and easy to handle.
 The entered passwords will be encrypted and saved on a sqlite database that we will create.
 
 **S - Specific (Spezifisch)**:
+
 The goal is to develop a PowerShell script for a password manager that utilizes SQLite for data storage. The script should include functionalities such as password encryption, adding, editing, and deleting passwords. Additional information, including username, email, notes, and tags, should be stored alongside the password (fields: Title, Username, Password, Urls, Tags, Notes). The script should create a graphical user interface (GUI). User needs to set a main password to enter the password manager.
 
 **M - Measurable (Messbar)**:
+
 The script's success depends on how well it handles passwords, including encryption, adding, editing, and deleting them. Additional points for success include providing extra information and creating a user-friendly interface. Setting a main password to enter the password manager and use the abilitiys of the manager is necessary.
 
 **A - Achievable (Erreichbar)**:
+
 The goal is achievable given the specified functionalities and the tools (PowerShell and SQLite) selected for implementation. The encryption, database management, and GUI development are capable with PowerShell scripting. The inclusion of user prompts for password setting improves the achievable aspect by ensuring a user-friendly experience.
 
 **R - Relevant (Relevant)**:
+
 The goal is relevant in the context of secure password management, as it addresses encryption, user interface, and the storage of additional information. The script aims to provide a complete solution for effective and easy password management, in line with the importance of safeguarding sensitive information.
 
 **T - Time-bound (Zeitgebunden)**:
+
 The goal should be completed within the time frame of 8 weeks, aiming for a reasonable planning and development period. A milestone could be set to complete the script and conduct testing within a specific timeframe, ensuring timely delivery and implementation. This helps maintain focus and prioritize tasks within a defined schedule.
 
 ## Before you start
@@ -61,7 +66,7 @@ To run the password manager, follow these steps:
 
 Once the Repository is cloned, modify line 24 to the path, where the "password-manager.db" database is stored
 
-2. **Run the Script*:*
+2. **Run the Script:**
 
 Run the script with Powershell
 
