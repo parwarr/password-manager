@@ -2,28 +2,42 @@
 
 ## Overview
 
-The password manager is a project developed for a school module, LB2, as part of an exam. This PowerShell script allows users...
+The password manager is a project developed for a school module, LB2, as part of an exam. This PowerShell script allows users to store their passwords easy and safe. The Entries will be saved on a SQlite Database that i sstored locally on the device.
 
 ## Goal of this Code
 
-The Goal of this projekt is, to create a user-friendly passwort manager with the language powershell.
+The Goal of this project is, to create a user-friendly passwort manager with the language powershell.
 The GUI will be simple and easy to handle.
-The entered passwords will be encrypted and saved on a sqplite database that we will create.
+The entered passwords will be encrypted and saved on a sqlite database that we will create.
 
 S - Specific (Spezifisch):
-The goal is to develop a PowerShell script for a password manager that utilizes SQLite for data storage. The script should include functionalities such as password encryption, adding, editing, and deleting passwords. Additional information, including username, email, notes, and tags, should be stored alongside the password (fields: Title, Username, Password, Urls, Tags, Notes). The script should create a graphical user interface (GUI) and potentially incorporate an icon. Upon the initial launch, if no password is set, the user should be prompted to set one.
+The goal is to develop a PowerShell script for a password manager that utilizes SQLite for data storage. The script should include functionalities such as password encryption, adding, editing, and deleting passwords. Additional information, including username, email, notes, and tags, should be stored alongside the password (fields: Title, Username, Password, Urls, Tags, Notes). The script should create a graphical user interface (GUI). User needs to set a main password to enter the password manager.
 
 M - Measurable (Messbar):
-The success of the script will be measured by its ability to effectively manage passwords, with features like encryption, addition, editing, and deletion. The inclusion of supplementary information and the creation of a user-friendly GUI with a potential icon will also be measurable criteria. The prompt for setting a password on the first launch adds a measurable criterion for user security.
+The script's success depends on how well it handles passwords, including encryption, adding, editing, and deleting them. Additional points for success include providing extra information and creating a user-friendly interface. Setting a main password to enter the password manager and use the abilitiys of the manager is necessary.
 
 A - Achievable (Erreichbar):
-The goal is achievable given the specified functionalities and the tools (PowerShell and SQLite) selected for implementation. The encryption, database management, and GUI development are within the capabilities of PowerShell scripting. The inclusion of user prompts for password setting enhances the achievable aspect by ensuring a user-friendly experience.
+The goal is achievable given the specified functionalities and the tools (PowerShell and SQLite) selected for implementation. The encryption, database management, and GUI development are capable with PowerShell scripting. The inclusion of user prompts for password setting improves the achievable aspect by ensuring a user-friendly experience.
 
 R - Relevant (Relevant):
-The goal is relevant in the context of secure password management, as it addresses encryption, user interface, and the storage of additional information. The script aims to provide a comprehensive solution for effective password management, aligning with the importance of safeguarding sensitive information.
+The goal is relevant in the context of secure password management, as it addresses encryption, user interface, and the storage of additional information. The script aims to provide a complete solution for effective and easy password management, in line with the importance of safeguarding sensitive information.
 
 T - Time-bound (Zeitgebunden):
-The goal should be completed within a specified time frame, aiming for a reasonable development period. A milestone could be set to complete the script and conduct testing within a specific timeframe, ensuring timely delivery and implementation. This helps maintain focus and prioritize tasks within a defined schedule.
+The goal should be completed within the time frame of 8 weeks, aiming for a reasonable planning and development period. A milestone could be set to complete the script and conduct testing within a specific timeframe, ensuring timely delivery and implementation. This helps maintain focus and prioritize tasks within a defined schedule.
+
+## Before you start
+
+1. Install SQlite https://www.sqlite.org/download.html
+
+2. Create new folder C:\sqlite
+
+3. Extract content of the downloaded folder and move it in the created folder
+
+4. Open command line (CMD)
+
+5. Navigate to C:\sqlite
+
+6. Once you navigated to the folder enter "sqlite3"
 
 ## Getting Started
 
@@ -43,9 +57,13 @@ $ cd ...
 
 To run the password manager, follow these steps:
 
-1. **Run the Script:** Execute the PowerShell script provided in this repository.
+1. **Modify DB Path in script:** 
 
-**TODO**: Add desc
+Once the Repository is cloned, modify line 24 to the path, where the "password-manager.db" database is stored
+
+2. **Run the Script*:*
+
+Run the script with Powershell
 
 ## Project Details
 
@@ -91,13 +109,21 @@ Login or sign up through the GUI.
 Access the main GUI for managing passwords.
 
 - **TODO**: 
-[] Mindstorm Project
-[] Plan Action Steps
-[] Create Repository in GitHub
-[] Create Header for Script
-[] Create a DB with Sqlite
-[] Establish connection with DB
-[] Create Login function
+[] Mindstorm Project //Saranhan, Parwar
+[] Plan Action Steps //Saranhan, Parwar
+[] Create Repository in GitHub //Parwar
+[] Write ReadMe // Saranhan
+[] Create Header for Script //Saranhan
+[] Create a DB with Sqlite //Parwar
+[] Establish connection with DB //Parwar
+[] Create Login function into password manager //Parwar
+[] Create AddEntry function to be able to enter passwords //Parwar
+[] Create the Login GUI with Sign In and Sign Up tab //Parwar
+[] Create password manager GUI with buttons to add entries, view notes and logout //Parwar
+[] Create view notes tab, where you can edit and delete your entires. //Parwar
+[] Create Usecases and Testcase //Saranhan
+[] Clean up Code 
+
 
 ### Author
 
@@ -107,7 +133,10 @@ Access the main GUI for managing passwords.
 ## Requirements
 
 - PowerShell
+- SQlite
 
 ## Disclamer
+
+- This password manager will store your passwords only locally on the database. This password manager utilises as an convenience application and not as an backup solution.
 
 
