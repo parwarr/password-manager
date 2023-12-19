@@ -53,7 +53,51 @@ To run the password manager, follow these steps:
 
 The script consists of several functions and steps:
 
-- **TODO**: Add desc
+1. **Database Setup**:
+Initializes the SQLite database connection.
+
+2. **User Functions**:
+
+**CreateLogin**:
+Creates a new user login.
+
+**Login**:
+Validates user credentials.
+
+**AddEntry**:
+Adds new password entries.
+
+3. **GUI Elements**:
+
+**ShowLoginGui**:
+Displays a user-friendly login/signup GUI.
+
+**ViewNotes**:
+GUI for viewing and deleting entries.
+
+**ShowPasswordManagerGui**:
+Main GUI for adding, viewing, and logging out.
+
+4. **Main Execution**:
+Initializes the database connection.
+Launches the login GUI.
+
+5. **Exception Handling**:
+Catches and handles exceptions.
+
+6. **Usage Flow**:
+Users run the script.
+Login or sign up through the GUI.
+Access the main GUI for managing passwords.
+
+- **TODO**: 
+[] Mindstorm Project
+[] Plan Action Steps
+[] Create Repository in GitHub
+[] Create Header for Script
+[] Create a DB with Sqlite
+[] Establish connection with DB
+[] Create Login function
 
 ### Author
 
@@ -66,4 +110,4 @@ The script consists of several functions and steps:
 
 ## Disclamer
 
-- This script only works for windows because it is using windows forms for the GUI.
+
