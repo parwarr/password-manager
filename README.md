@@ -90,7 +90,14 @@ Users run the script.
 Login or sign up through the GUI.
 Access the main GUI for managing passwords.
 
-- **TODO**: Add desc
+- **TODO**: 
+[] Mindstorm Project
+[] Plan Action Steps
+[] Create Repository in GitHub
+[] Create Header for Script
+[] Create a DB with Sqlite
+[] Establish connection with DB
+[] Create Login function
 
 ### Author
 
