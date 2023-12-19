@@ -60,7 +60,7 @@ function CreateLogin {
     $createUserQuery = "INSERT INTO Login (Username, Password) VALUES ('$username', '$password')"
     $createdUser = Invoke-SqliteQuery -DataSource $db -Query $createUserQuery
 
-    if ($createdUser -eq 1) {
+    if ($createdUser -eq $null) {
         Write-Host "User creation successful" -ForegroundColor Green
     } else {
         Write-Host "User creation failed" -ForegroundColor Red
