@@ -90,7 +90,7 @@ function Login {
         [string]$username,
         [string]$password
     )
-        Write-Host "Logging in..." -ForegroundColor Green
+        Write-Host "Logging in..." -ForegroundColor Yellow
         $query = "SELECT * FROM Login WHERE Username = '$username' AND Password = '$password'"
         $result = Invoke-SqliteQuery -DataSource $db -Query $query
 
@@ -362,7 +362,7 @@ function ViewNotes {
                 return
             }
         }
-        Write-Host "Invalid ID. Deletion canceled."
+        Write-Host "Invalid ID. Deletion canceled." -ForegroundColor Red
     })
     $form.Controls.Add($buttonDelete)
 
@@ -390,7 +390,7 @@ function ViewNotes {
                 return
             }
         }
-        Write-Host "Invalid ID. Editing canceled."
+        Write-Host "Invalid ID. Editing canceled." -ForegroundColor Red
     })
     $form.Controls.Add($buttonEdit)
 
