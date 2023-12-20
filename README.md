@@ -172,7 +172,7 @@ Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeb
 
 **Beweis der Durchführung:** 
 
-![Alt text](screenshots\db_connection.JPG "Optional Title")
+![Alt text](screenshots\db_connection.JPG)
 
-![Alt text](screenshots\login.JPG "Optional Title")
+![Alt text](screenshots\login.JPG)
 
