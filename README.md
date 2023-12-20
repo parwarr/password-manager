@@ -1,8 +1,8 @@
 # Password-Manager
 
-## Überblich
+## Übersicht
 
-Der Passwort Manager ist ein Schulprojekt für das Modul 122. Dieses PowerShell Skript erlaubt dem Benutzer ihr passwort sicher und einfach zu speichern. Die Einträge werden in einer SQlite Datenbank gespeichert, die lokal auf dem Gerät ist.
+Der Passwort Manager ist ein Schulprojekt für das Modul 122. Dieses PowerShell Skript erlaubt dem Benutzer ihr Passwort sicher und einfach zu speichern. Die Einträge werden in einer SQlite Datenbank gespeichert, die lokal auf dem Gerät ist.
 
 ## Ziel dieses Skripts
 
@@ -28,128 +28,148 @@ Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter sicher und e
 
 **T - Time-bound (Zeitgebunden)**:
 
-Die Zeitspanne, die wir haben sind 8 Wochen. In diesen 8 Wochen, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die Verschiedenen schritte, wie Planung, Entwicklung und Testen des Skripts. 
-The goal should be completed within the time frame of 8 weeks, aiming for a reasonable planning and development period. A milestone could be set to complete the script and conduct testing within a specific timeframe, ensuring timely delivery and implementation. This helps maintain focus and prioritize tasks within a defined schedule.
+Die Zeitspanne, die wir haben sind 8 Wochen. In diesen 8 Wochen, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die Verschiedenen schritte, wie Planung, Entwicklung und Testen des Skripts. Ein Erfolg wäre, wenn man vor dem geplanten Zeitplan, die Arbeit fertig bekommt. damit könnte man auch Finale optimierungen treffen 
 
-## Before you start
+## Bevor man startet
 
-1. Install SQlite https://www.sqlite.org/download.html
+1. Installiere SQlite https://www.sqlite.org/download.html
 
-2. Create new folder C:\sqlite
+2. Erstelle einen neuen Ordner C:\sqlite
 
-3. Extract content of the downloaded folder and move it in the created folder
+3. Extrahiere die Dateien und verschiebe sie in den erstellten Ordner
 
-4. Open command line (CMD)
+4. Öffne die Eingabeaufforderung (CMD)
 
-5. Navigate to C:\sqlite
+5. Navigiere zu C:\sqlite
 
-6. Once you navigated to the folder enter "sqlite3"
+6. Wenn du in Ordner bist gib "sqlite3" ein
 
-## Getting Started
+## Erste Schritte
 
-Clone the repo:
-
-1. **Clone the repo**:
+1. **Klone die repo**:
 
 ```bash
 $ git clone git@github.com:parwarr/password-manager.git
 ```
 
-2. **Move to the project**:
+2. **Navigiere zum Ordner**:
 
 ```bash
 $ cd ...
 ```
 
-To run the password manager, follow these steps:
+Um den Passwort-Manager zu starten, befolge diese Schritte
 
-1. **Modify DB Path in script:** 
+1. **Ändere den DB Pfad im Skript:** 
 
-Once the Repository is cloned, modify line 24 to the path, where the "password-manager.db" database is stored
+Sobald du die Repository geklont hast, musst du in Zeile 24 den Pfad anpassen, wo die Datei "password-manager.db" gespeichert ist
 
-2. **Run the Script:**
+2. **Füre das Skript aus:**
 
-Run the script with Powershell
+Füre das Skript mit PowerShell aus
 
-## Project Details
+## Projekt Details
 
-### Script Overview
+### Skript Übersicht
 
 The script consists of several functions and steps:
 
-1. **Database Setup**:
-Initializes the SQLite database connection.
+1. **Datenbankinitialisierung**:
+Importiert das PSSQLite-Modul für die Interaktion mit der SQLite-Datenbank.
 
-2. **User Functions**:
+Setzt den Pfad für die SQLite-Datenbank.
+
+2. **Globale Variablen**
+Definiert eine globale Variable $global:loggedInUserId, um die Benutzer-ID nach erfolgreichem Login zu speichern.
+
+3. **User Functions**:
+
+**CreateDatabaseConnection**:
+Prüft und stellt eine Verbindung zur SQLite-Datenbank her.
 
 **CreateLogin**:
-Creates a new user login.
+Neues Login erstellen.
 
 **Login**:
-Validates user credentials.
+Validiert Benutzeranmeldeinformationen und meldet sich an.
 
 **AddEntry**:
-Adds new password entries.
+Fügt einen neuen Eintrag mit Details wie Titel, E-Mail, Benutzername, Passwort, Notizen, URL und Tags hinzu.
 
-3. **GUI Elements**:
+4. **GUI Elemente**:
 
 **ShowLoginGui**:
-Displays a user-friendly login/signup GUI.
+Zeigt eine grafische Benutzeroberfläche für Benutzeranmeldung und -registrierung an.
+
+Ermöglicht Benutzern das Umschalten zwischen Anmeldung und Registrierung.
+
+Ruft die Funktion Login oder CreateLogin basierend auf der Benutzereingabe auf.
 
 **ViewNotes**:
-GUI for viewing and deleting entries.
+Zeigt eine GUI zum Anzeigen und Löschen von Einträgen, organisiert durch Registerkarten, an.
+
+Ermöglicht Benutzern das Löschen von Einträgen durch Eingabe der ID.
 
 **ShowPasswordManagerGui**:
-Main GUI for adding, viewing, and logging out.
+Zeigt die Haupt-GUI des Passwort-Managers an.
 
-4. **Main Execution**:
-Initializes the database connection.
-Launches the login GUI.
+Ermöglicht Benutzern das Hinzufügen neuer Einträge, Anzeigen und Löschen vorhandener Einträge sowie das Abmelden.
 
-5. **Exception Handling**:
-Catches and handles exceptions.
+5. **Hauptausführung**:
+Initialisiert die Datenbankverbindung mit CreateDatabaseConnection.
 
-6. **Usage Flow**:
-Users run the script.
-Login or sign up through the GUI.
-Access the main GUI for managing passwords.
+Zeigt die Anmeldungs-GUI mit ShowLoginGui an.
+
+6. **Fehlerbehandlungg**:
+Fangt Ausnahmen ab und gibt Fehlermeldungen aus.
+
+7. **Ablauf**:
+Benutzer führen das Skript aus und initialisieren die Datenbankverbindung.
+
+Das Skript fordert die Benutzer mit einer Anmeldungs-GUI auf.
+
+Benutzer können sich anmelden oder registrieren.
+
+Nach erfolgreichem Login wird die Haupt-GUI des Passwort-Managers angezeigt.
+
+Benutzer können neue Einträge hinzufügen, vorhandene Einträge anzeigen und löschen sowie sich abmelden.
 
 - **TODO**: 
-[] Mindstorm Project //Saranhan, Parwar
+[] Brainstorm Projekt //Saranhan, Parwar
 
-[] Plan Action Steps //Saranhan, Parwar
+[] Planen der Schritte //Saranhan, Parwar
 
-[] Create Repository in GitHub //Parwar
+[] Repository erstellen in GitHub //Parwar
 
-[] Write ReadMe // Saranhan
+[] ReadMe.md schreiben // Saranhan
 
-[] Create Header for Script //Saranhan
+[] Header erstellen für das Skript //Saranhan
 
-[] Create a DB with Sqlite //Parwar
+[] Datenbank erstellen //Parwar
 
-[] Establish connection with DB //Parwar
+[] Datenbank Verbindung herstellen //Parwar
 
-[] Create Login function into password manager //Parwar
+[] Login Funktion erstellen für den Passwort-Manager //Parwar
 
-[] Create AddEntry function to be able to enter passwords //Parwar
+[] Eintragfunktion erstellen für Passwörter //Parwar
 
-[] Create the Login GUI with Sign In and Sign Up tab //Parwar
+[] Login GUI erstellen mit Sign In und Sign Up //Parwar
 
-[] Create password manager GUI with buttons to add entries, view notes and logout //Parwar
+[] Passwort-Manager GUI erstellen mit Einträge erstellen, View Notes und Logout knöpfen //Parwar
 
-[] Create view notes tab, where you can edit and delete your entires. //Parwar
+[] View Notes GUI Tab erstellen, wo man die Einträge editieren oder löschen kann //Parwar
 
-[] Create Usecases and Testcase //Saranhan
+[] Test- und Usecase erstellen //Saranhan
 
-[] Clean up Code 
+[] Skript Aufbau schön machen
 
 
-### Author
+### Autor
 
 - sth134864@stud.gibb.ch
 - hpa134085@stud.gibb.ch
 
-## Requirements
+## Voraussetzungen
 
 - PowerShell
 - SQlite
