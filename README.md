@@ -1,33 +1,34 @@
-# password-manager
+# Password-Manager
 
-## Overview
+## Überblich
 
-The password manager is a project developed for a school module, LB2, as part of an exam. This PowerShell script allows users to store their passwords easy and safe. The Entries will be saved on a SQlite Database that i sstored locally on the device.
+Der Passwort Manager ist ein Schulprojekt für das Modul 122. Dieses PowerShell Skript erlaubt dem Benutzer ihr passwort sicher und einfach zu speichern. Die Einträge werden in einer SQlite Datenbank gespeichert, die lokal auf dem Gerät ist.
 
-## Goal of this Code
+## Ziel dieses Skripts
 
-The Goal of this project is, to create a user-friendly passwort manager with the language powershell.
-The GUI will be simple and easy to handle.
-The entered passwords will be encrypted and saved on a sqlite database that we will create.
+Das Ziel dieses Projektes ist ein Benutzerfreundlicher Passwort-Manager zu erstellen mit PowerShell
+Die Benutzeroberfläche wird eifach zum handhaben sein.
+Die gespeicherten Passwörter werden verschlüsselt in einer SQlite Datenbank gespeichert, die wir erstellen werden.
 
 **S - Specific (Spezifisch)**:
 
-The goal is to develop a PowerShell script for a password manager that utilizes SQLite for data storage. The script should include functionalities such as password encryption, adding, editing, and deleting passwords. Additional information, including username, email, notes, and tags, should be stored alongside the password (fields: Title, Username, Password, Urls, Tags, Notes). The script should create a graphical user interface (GUI). User needs to set a main password to enter the password manager.
+Das Ziel ist ein Passwort-Manager zu erstellen, der eine SQlite Datenbank für die Einträge braucht. In dieses Skript kann man seine Passwörter verschlüsselt speichern, bearbeiten oder löschen. Zu den gespeicherten Passwörter, kann man den Usernamen, eine Email-Adresse, Notizen und tags speichern. Dieses Skript wird mit einer Benutzeroberfläche erstellt, um eine einfache Benutzung zu gewährleisten. Um den Password-Manager zu brauchen, muss man ein Hauptpasswort setzen, damit die gespeicherten Einträge nicht offen an alle sind.
 
 **M - Measurable (Messbar)**:
 
-The script's success depends on how well it handles passwords, including encryption, adding, editing, and deleting them. Additional points for success include providing extra information and creating a user-friendly interface. Setting a main password to enter the password manager and use the abilitiys of the manager is necessary.
+Dieses Skript kann man anhand der Benutzung messen. Zudem ist erkennbar, wie dieses Skript mit dem aufrufen editieren oder löschen der Einträge umgeht. Auch die Aktionen, wie die Informationen zusätzlich der Passwörter sind messbar. Die Benutzeroberfläche muss einfach zum navigieren sein und die Passwörter schnell abrufbar sein.
 
 **A - Achievable (Erreichbar)**:
 
-The goal is achievable given the specified functionalities and the tools (PowerShell and SQLite) selected for implementation. The encryption, database management, and GUI development are capable with PowerShell scripting. The inclusion of user prompts for password setting improves the achievable aspect by ensuring a user-friendly experience.
+Dieses Ziel ist realistisch zum Umsetzen. Hier geht es um den Umfang den man ausführt für dieses Projekt. Mit den Implementationen der Verschlüsselung, eintragen, editieren, abrufen und löschen der Passwörter, erreichen wir alle Kriterien, die es braucht einen guten Passwort-Manager zu erstellen.  
 
 **R - Relevant (Relevant)**:
 
-The goal is relevant in the context of secure password management, as it addresses encryption, user interface, and the storage of additional information. The script aims to provide a complete solution for effective and easy password management, in line with the importance of safeguarding sensitive information.
+Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter sicher und einfach speichern möchte. Dazu werden auch zusätzliche Funktioinen zur verfügung gestellt, die das benutzen des Passwort-Manager einfacher macht. Dieses Skript strebt eine effektive und einfache Weise an Passwörter zu speichern, in welcher auch die Sicherheit gewährleistet wird. 
 
 **T - Time-bound (Zeitgebunden)**:
 
+Die Zeitspanne, die wir haben sind 8 Wochen. In diesen 8 Wochen, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die Verschiedenen schritte, wie Planung, Entwicklung und Testen des Skripts. 
 The goal should be completed within the time frame of 8 weeks, aiming for a reasonable planning and development period. A milestone could be set to complete the script and conduct testing within a specific timeframe, ensuring timely delivery and implementation. This helps maintain focus and prioritize tasks within a defined schedule.
 
 ## Before you start
