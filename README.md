@@ -135,6 +135,7 @@ Nach erfolgreichem Login wird die Haupt-GUI des Passwort-Managers angezeigt.
 Benutzer können neue Einträge hinzufügen, vorhandene Einträge anzeigen und löschen sowie sich abmelden.
 
 - **TODO**: 
+
 [] Brainstorm Projekt //Saranhan, Parwar
 
 [] Planen der Schritte //Saranhan, Parwar
