@@ -302,6 +302,23 @@ function ViewNotes {
     $form.StartPosition = "CenterScreen"
     $form.BackColor = [System.Drawing.Color]::FromArgb(255, 34, 35, 38) 
 
+    # Display Date and Time
+    $labelDateTime = New-Object System.Windows.Forms.Label
+    [datetime]$labelDateTime.Text = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $labelDateTime.Location = New-Object System.Drawing.Point(450, 430)
+    $labelDateTime.Size = New-Object System.Drawing.Size(200, 20)
+    $labelDateTime.ForeColor = [System.Drawing.Color]::White
+    $labelDateTime.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Regular)
+    $form.Controls.Add($labelDateTime)
+
+    # Display entries count
+    $labelEntriesCount = New-Object System.Windows.Forms.Label
+    $labelEntriesCount.Location = New-Object System.Drawing.Point(20, 430)
+    $labelEntriesCount.Size = New-Object System.Drawing.Size(150, 20)
+    $labelEntriesCount.ForeColor = [System.Drawing.Color]::White
+    $labelEntriesCount.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Regular)
+    $form.Controls.Add($labelEntriesCount)
+
     $tabControl = New-Object System.Windows.Forms.TabControl
     $tabControl.Size = New-Object System.Drawing.Size(580, 300)
     $tabControl.Anchor = [System.Windows.Forms.AnchorStyles]::Top -bor [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right
@@ -363,14 +380,14 @@ function ViewNotes {
         foreach ($entry in $entriesResult) {
             if ($editId -eq $entry.ID) {
                 # Open a new form for editing the selected note
-            EditNoteForm $entry
+                EditNoteForm $entry
 
-            # Dispose of the current form
-            $form.Dispose()
+                # Dispose of the current form
+                $form.Dispose()
 
-            # Re-open the form to refresh entries
-            ViewNotes
-            return
+                # Re-open the form to refresh entries
+                ViewNotes
+                return
             }
         }
         Write-Host "Invalid ID. Editing canceled."
@@ -380,6 +397,11 @@ function ViewNotes {
     # Fetch entries associated with the user's loginId
     $entriesQuery = "SELECT * FROM PasswortManager WHERE LoginId = '$global:loggedInUserId'"
     $entriesResult = Invoke-SqliteQuery -DataSource $db -Query $entriesQuery
+
+    [int]$EntriesCount= $($entriesResult.Count)
+
+    # Display the number of entries
+    $labelEntriesCount.Text = "Entries: $EntriesCount"
 
     foreach ($entry in $entriesResult) {
         $tabPage = New-Object System.Windows.Forms.TabPage
@@ -428,6 +450,7 @@ ID: $($entry.ID)
 
     $form.ShowDialog() | Out-Null
 }
+
 
 # Function to create a form for editing notes
 function EditNoteForm {
