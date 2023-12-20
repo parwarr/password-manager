@@ -144,4 +144,35 @@ Access the main GUI for managing passwords.
 
 - This password manager will store your passwords only locally on the database. This password manager utilises as an convenience application and not as an backup solution.
 
+## Usecase
+
+**Testfall 1: Benutzeranmeldung**
+
+**Usecase:** Ein Benutzer möchte sich im Passwort-Manager anmelden. 
+
+**Testszenario:** 
+
+Benutzer gibt gültigen Benutzernamen und gültiges Passwort ein. 
+
+**Schritte:** 
+
+Skript starten 
+
+Einloggen mit einem erstellen User 
+
+**Randbedingungen:** 
+
+Skript muss lokal von GitHub geklont sein. 
+
+Im Skript den Pfad Datenbank Pfad angepasst haben 
+
+**Erwartete Ergebnisse:** 
+
+Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeben. 
+
+**Beweis der Durchführung:** 
+
+![Alt text](screenshots\db_connection.JPG "Optional Title")
+
+![Alt text](screenshots\login.JPG "Optional Title")
 
