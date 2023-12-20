@@ -6,13 +6,14 @@ Der Passwort Manager ist ein Schulprojekt für das Modul 122. Dieses PowerShell 
 
 ## Ziel dieses Skripts
 
-Das Ziel dieses Projektes ist ein Benutzerfreundlicher Passwort-Manager zu erstellen mit PowerShell
+Das Ziel dieses Projektes ist ein Benutzerfreundlicher Passwort-Manager zu erstellen mit PowerShell.
 Die Benutzeroberfläche wird eifach zum handhaben sein.
 Die gespeicherten Passwörter werden verschlüsselt in einer SQlite Datenbank gespeichert, die wir erstellen werden.
+Man kann die Passwörter abrufen, bearbeiten oder löschen.
 
 **S - Specific (Spezifisch)**:
 
-Das Ziel ist ein Passwort-Manager zu erstellen, der eine SQlite Datenbank für die Einträge braucht. In dieses Skript kann man seine Passwörter verschlüsselt speichern, bearbeiten oder löschen. Zu den gespeicherten Passwörter, kann man den Usernamen, eine Email-Adresse, Notizen und tags speichern. Dieses Skript wird mit einer Benutzeroberfläche erstellt, um eine einfache Benutzung zu gewährleisten. Um den Password-Manager zu brauchen, muss man ein Hauptpasswort setzen, damit die gespeicherten Einträge nicht offen an alle sind.
+Das Ziel ist ein Passwort-Manager zu erstellen, der eine SQlite Datenbank für die Einträge braucht. In dieses Skript kann man seine Passwörter verschlüsselt speichern, bearbeiten oder löschen. Zu den gespeicherten Passwörter, kann man den Usernamen, eine Email-Adresse, Notizen und Tags speichern. Dieses Skript wird mit einer Benutzeroberfläche erstellt, um eine einfache Benutzung zu gewährleisten. Um den Password-Manager zu brauchen, muss man ein Hauptpasswort setzen, damit die gespeicherten Einträge nicht offen für alle sind.
 
 **M - Measurable (Messbar)**:
 
@@ -20,15 +21,15 @@ Dieses Skript kann man anhand der Benutzung messen. Zudem ist erkennbar, wie die
 
 **A - Achievable (Erreichbar)**:
 
-Dieses Ziel ist realistisch zum Umsetzen. Hier geht es um den Umfang den man ausführt für dieses Projekt. Mit den Implementationen der Verschlüsselung, eintragen, editieren, abrufen und löschen der Passwörter, erreichen wir alle Kriterien, die es braucht einen guten Passwort-Manager zu erstellen.  
+Dieses Ziel ist realistisch zum Umsetzen. Hier geht es um den Umfang, den man ausführt für dieses Projekt. Mit den Implementationen der Verschlüsselung, eintragen, editieren, abrufen und löschen der Passwörter, erreichen wir alle Kriterien, die es braucht einen guten Passwort-Manager zu erstellen.  
 
 **R - Relevant (Relevant)**:
 
-Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter sicher und einfach speichern möchte. Dazu werden auch zusätzliche Funktioinen zur verfügung gestellt, die das benutzen des Passwort-Manager einfacher macht. Dieses Skript strebt eine effektive und einfache Weise an Passwörter zu speichern, in welcher auch die Sicherheit gewährleistet wird. 
+Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter sicher und einfach speichern möchte. Dazu werden auch zusätzliche Funktioinen zur Verfügung gestellt, die das benutzen des Passwort-Manager einfacher macht. Dieses Skript strebt eine effektive und einfache Weise an Passwörter zu speichern, in welcher auch die Sicherheit gewährleistet wird. 
 
 **T - Time-bound (Zeitgebunden)**:
 
-Die Zeitspanne, die wir haben sind 8 Wochen. In diesen 8 Wochen, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die Verschiedenen schritte, wie Planung, Entwicklung und Testen des Skripts. Ein Erfolg wäre, wenn man vor dem geplanten Zeitplan, die Arbeit fertig bekommt. damit könnte man auch Finale optimierungen treffen 
+Die Zeitspanne, die wir haben sind 8 Wochen. In diesen 8 Wochen, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die verschiedenen Schritte, wie Planung, Entwicklung und Testen des Skripts werden in diesen 8 Wochen erfolgen. Ein Erfolg wäre, wenn man vor dem geplanten Zeitplan, die Arbeit fertig bekommt. damit könnte man auch Finale optimierungen treffen. 
 
 ## Bevor man startet
 
@@ -58,7 +59,7 @@ $ git clone git@github.com:parwarr/password-manager.git
 $ cd ...
 ```
 
-Um den Passwort-Manager zu starten, befolge diese Schritte
+## Um den Passwort-Manager zu starten, befolge diese Schritte:
 
 1. **Ändere den DB Pfad im Skript:** 
 
@@ -280,4 +281,7 @@ Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausg
 ![Alt text](screenshots/new_entry.JPG)
 
 ![Alt text](screenshots/entry_added.JPG)
+
+![Alt text](screenshots\notes_entry.png)
+
 
