@@ -61,7 +61,15 @@ function CreateLogin {
     $createdUser = Invoke-SqliteQuery -DataSource $db -Query $createUserQuery
 
     if ($createdUser -eq $null) {
-        Write-Host "User creation successful" -ForegroundColor Green
+
+        $query = "SELECT * FROM Login WHERE Username = '$username' AND Password = '$password'"
+        $result = Invoke-SqliteQuery -DataSource $db -Query $query
+
+        if ($result) {
+            $global:loggedInUserId = $result.Id
+            Write-Host "User creation successful" -ForegroundColor Green
+            return
+        }
     } else {
         Write-Host "User creation failed" -ForegroundColor Red
     }
