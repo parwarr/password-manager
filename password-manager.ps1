@@ -121,6 +121,20 @@ function AddEntry {
         return
     }
 
+    # Email validation regex
+    $emailRegex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'
+    if ($email -and $email -notmatch $emailRegex) {
+     Write-Host "Error: Invalid email format." -ForegroundColor Red
+    return
+    }
+
+    # URL validation regex
+    $urlRegex = '^https?://(?:www.)?[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/?.*$'
+    if ($url -and $url -notmatch $urlRegex) {
+    Write-Host "Error: Invalid URL format." -ForegroundColor Red
+    return
+    }
+
     $query = @"
     INSERT INTO PasswortManager (Title, Email, Username, Password, Notes, Url, Tags, LoginId)
     VALUES ('$title', '$email', '$username', '$password', '$notes', '$url', '$tags', '$global:loggedInUserId')
@@ -536,6 +550,20 @@ function EditNoteForm {
             'Notes'    = $textboxNotes.Text
             'URL'      = $textboxURL.Text
             'Tags'     = $textboxTags.Text
+        }
+
+        # Email validation regex
+        $emailRegex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'
+        if ($editedEntry.Email -and $editedEntry.Email -notmatch $emailRegex) {
+         Write-Host "Error: Invalid email format." -ForegroundColor Red
+        return
+        }
+
+        # URL validation regex
+        $urlRegex = '^https?://(?:www.)?[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/?.*$'
+        if ($editedEntry.URL -and $editedEntry.URL -notmatch $urlRegex) {
+        Write-Host "Error: Invalid URL format." -ForegroundColor Red
+        return
         }
 
         $updateQuery = "UPDATE PasswortManager SET Title = '$($editedEntry.Title)', Email = '$($editedEntry.Email)', Username = '$($editedEntry.Username)', Password = '$($editedEntry.Password)', Notes = '$($editedEntry.Notes)', URL = '$($editedEntry.URL)', Tags = '$($editedEntry.Tags)' WHERE Id = '$($entry.ID)'"
