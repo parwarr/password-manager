@@ -164,7 +164,7 @@ Einloggen mit einem erstellen User
 
 Skript muss lokal von GitHub geklont sein. 
 
-Im Skript den Pfad Datenbank Pfad angepasst haben 
+Im Skript den Datenbank Pfad angepasst haben. 
 
 **Erwartete Ergebnisse:** 
 
