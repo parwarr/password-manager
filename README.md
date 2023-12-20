@@ -115,18 +115,31 @@ Access the main GUI for managing passwords.
 
 - **TODO**: 
 [] Mindstorm Project //Saranhan, Parwar
+
 [] Plan Action Steps //Saranhan, Parwar
+
 [] Create Repository in GitHub //Parwar
+
 [] Write ReadMe // Saranhan
+
 [] Create Header for Script //Saranhan
+
 [] Create a DB with Sqlite //Parwar
+
 [] Establish connection with DB //Parwar
+
 [] Create Login function into password manager //Parwar
+
 [] Create AddEntry function to be able to enter passwords //Parwar
+
 [] Create the Login GUI with Sign In and Sign Up tab //Parwar
+
 [] Create password manager GUI with buttons to add entries, view notes and logout //Parwar
+
 [] Create view notes tab, where you can edit and delete your entires. //Parwar
+
 [] Create Usecases and Testcase //Saranhan
+
 [] Clean up Code 
 
 
@@ -172,9 +185,9 @@ Das Skript sollte den neuen Benutzer erfolgreich erstellen und eine Bestätigung
 
 **Beweis der Durchführung:**
 
-![Alt text](screenshots\creating_user.JPG)
+![Alt text](screenshots/creating_user.JPG)
 
-![Alt text](screenshots\creation_successful.JPG)
+![Alt text](screenshots/creation_successful.JPG)
 
 
 
@@ -206,9 +219,9 @@ Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeb
 
 **Beweis der Durchführung:** 
 
-![Alt text](screenshots\db_connection.JPG)
+![Alt text](screenshots/db_connection.JPG)
 
-![Alt text](screenshots\login.JPG)
+![Alt text](screenshots/login.JPG)
 
 
 
@@ -242,7 +255,7 @@ Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausg
 
 **Beweis der Durchführung:** 
 
-![Alt text](screenshots\new_entry.JPG)
+![Alt text](screenshots/new_entry.JPG)
 
-![Alt text](screenshots\entry_added.JPG)
+![Alt text](screenshots/entry_added.JPG)
 
