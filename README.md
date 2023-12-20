@@ -115,18 +115,31 @@ Access the main GUI for managing passwords.
 
 - **TODO**: 
 [] Mindstorm Project //Saranhan, Parwar
+
 [] Plan Action Steps //Saranhan, Parwar
+
 [] Create Repository in GitHub //Parwar
+
 [] Write ReadMe // Saranhan
+
 [] Create Header for Script //Saranhan
+
 [] Create a DB with Sqlite //Parwar
+
 [] Establish connection with DB //Parwar
+
 [] Create Login function into password manager //Parwar
+
 [] Create AddEntry function to be able to enter passwords //Parwar
+
 [] Create the Login GUI with Sign In and Sign Up tab //Parwar
+
 [] Create password manager GUI with buttons to add entries, view notes and logout //Parwar
+
 [] Create view notes tab, where you can edit and delete your entires. //Parwar
+
 [] Create Usecases and Testcase //Saranhan
+
 [] Clean up Code 
 
 
@@ -146,7 +159,39 @@ Access the main GUI for managing passwords.
 
 ## Usecase
 
-**Testfall 1: Benutzeranmeldung**
+**Testfall 1:** Neuen Benutzer erstellen 
+
+**Usecase:** Ein neuer Benutzer möchte sich im Passwort-Manager registrieren. 
+
+**Testszenario:**
+
+Benutzer gibt einen eindeutigen Benutzernamen und ein sicheres Passwort ein. 
+
+**Schritte:** 
+
+Skript starten mit PowerShell 
+
+User registrieren 
+
+**Randbedingungen:** 
+
+Skript muss lokal von GitHub geklont sein. 
+
+Im Skript den Datenbank Pfad angepasst haben.
+
+**Erwartete Ergebnisse:** 
+
+Das Skript sollte den neuen Benutzer erfolgreich erstellen und eine Bestätigung ausgeben. 
+
+**Beweis der Durchführung:**
+
+![Alt text](screenshots/creating_user.JPG)
+
+![Alt text](screenshots/creation_successful.JPG)
+
+
+
+**Testfall 2: Benutzeranmeldung**
 
 **Usecase:** Ein Benutzer möchte sich im Passwort-Manager anmelden. 
 
@@ -166,6 +211,8 @@ Skript muss lokal von GitHub geklont sein.
 
 Im Skript den Datenbank Pfad angepasst haben. 
 
+User registriert haben
+
 **Erwartete Ergebnisse:** 
 
 Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeben. 
@@ -175,4 +222,40 @@ Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeb
 ![Alt text](screenshots/db_connection.JPG)
 
 ![Alt text](screenshots/login.JPG)
+
+
+
+**Testfall 3:** Neuen Eintrag hinzufügen 
+
+**Usecase:** Ein eingeloggter Benutzer möchte einen neuen Eintrag (Passwort) hinzufügen. 
+
+**Testszenario:** 
+
+Benutzer gibt alle erforderlichen Informationen für den neuen Eintrag ein. 
+
+**Schritte:**
+
+Skript starten mit PowerShell 
+
+Mit einem existierenden User anmelden 
+
+Eintrag erstellen 
+
+**Randbedingungen:** 
+
+Skript muss lokal von GitHub geklont sein.  
+
+Im Skript den Datenbank Pfad angepasst haben.  
+
+User registriert haben 
+
+**Erwartete Ergebnisse:** 
+
+Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausgeben. 
+
+**Beweis der Durchführung:** 
+
+![Alt text](screenshots/new_entry.JPG)
+
+![Alt text](screenshots/entry_added.JPG)
 
