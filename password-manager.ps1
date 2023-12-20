@@ -75,6 +75,14 @@ function CreateLogin {
     }
 }
 
+# Function to logout
+function Logout {
+    $global:loggedInUserId = $null
+    Write-Host "Logout successful" -ForegroundColor Green
+    $form.Dispose()  
+    ShowLoginGui   
+}
+
 
 # Function to login
 function Login {
@@ -676,24 +684,20 @@ function ShowPasswordManagerGui {
     })
     $form.Controls.Add($buttonAddEntry)
 
-    # Logout button
-    $buttonLogout = New-Object System.Windows.Forms.Button
-    $buttonLogout.Location = New-Object System.Drawing.Point(270, 240)
-    $buttonLogout.Size = New-Object System.Drawing.Size(100, 30)
-    $buttonLogout.Text = "Logout"
-    $buttonLogout.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  
-    $buttonLogout.ForeColor = [System.Drawing.Color]::White
-    $buttonLogout.Add_Click({
-        $form.DialogResult = 'OK'
-    })
-    $form.Controls.Add($buttonLogout)
+   
+        # Logout button
+        $buttonLogout = New-Object System.Windows.Forms.Button
+        $buttonLogout.Location = New-Object System.Drawing.Point(270, 240)
+        $buttonLogout.Size = New-Object System.Drawing.Size(100, 30)
+        $buttonLogout.Text = "Logout"
+        $buttonLogout.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  
+        $buttonLogout.ForeColor = [System.Drawing.Color]::White
+        $buttonLogout.Add_Click({
+            Logout
+        })
+        $form.Controls.Add($buttonLogout)
 
-    $result = $form.ShowDialog()
-
-    if ($result -eq 'OK') {
-        $form.Close()
-        ShowLoginGui   
-    }
+    $form.ShowDialog()
 }
 
 
