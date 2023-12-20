@@ -159,7 +159,7 @@ Access the main GUI for managing passwords.
 
 ## Usecase
 
-**Testfall 1:** Neuen Benutzer erstellen 
+**Testfall 1: Neuen Benutzer erstellen** 
 
 **Usecase:** Ein neuer Benutzer möchte sich im Passwort-Manager registrieren. 
 
@@ -225,7 +225,7 @@ Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeb
 
 
 
-**Testfall 3:** Neuen Eintrag hinzufügen 
+**Testfall 3: Neuen Eintrag hinzufügen** 
 
 **Usecase:** Ein eingeloggter Benutzer möchte einen neuen Eintrag (Passwort) hinzufügen. 
 
