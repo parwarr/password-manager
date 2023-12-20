@@ -178,7 +178,7 @@ Benutzer können neue Einträge hinzufügen, vorhandene Einträge anzeigen und l
 
 ## Disclamer
 
-- This password manager will store your passwords only locally on the database. This password manager utilises as an convenience application and not as an backup solution.
+- Der Passwort-Manager wird deine Passwörter nur lokal in der Datenbank auf deinem PC speichern. Er dient als eine Komfort-Anwendungund ist nicht als Backuop Lösung geeignet.
 
 ## Usecase
 
