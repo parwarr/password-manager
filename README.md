@@ -21,15 +21,15 @@ Dieses Skript kann man anhand der Benutzung messen. Zudem ist erkennbar, wie die
 
 **A - Achievable (Erreichbar)**:
 
-Dieses Ziel ist realistisch zum Umsetzen. Hier geht es um den Umfang, den man ausführt für dieses Projekt. Mit den Implementationen der Einträge editieren, abrufen und löschen, erreichen wir alle Kriterien, die es braucht einen guten Passwort-Manager zu erstellen.  
+Dieses Ziel ist realistisch zum Umsetzen. Hier geht es um den Umfang, den man ausführt für dieses Projekt. Mit den Implementationen der Einträge editieren, abrufen und löschen, erreichen wir alle Kriterien, die es braucht einen guten Passwort-Manager zu erstellen.
 
 **R - Relevant (Relevant)**:
 
-Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter einfach speichern möchte. Dazu werden auch zusätzliche Funktioinen zur Verfügung gestellt, die das benutzen des Passwort-Manager einfacher macht. Dieses Skript strebt eine effektive und einfache Weise an Passwörter zu speichern. 
+Dieses Projekt hat eine grosse Relevanz, weil man seine Passwörter einfach speichern möchte. Dazu werden auch zusätzliche Funktioinen zur Verfügung gestellt, die das benutzen des Passwort-Manager einfacher macht. Dieses Skript strebt eine effektive und einfache Weise an Passwörter zu speichern.
 
 **T - Time-bound (Zeitgebunden)**:
 
-Die Zeitspanne, die wir haben sind von der Kalenderwoche 42 bis zur Kalenderwoche 51. In diesen Zeitspanne, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die verschiedenen Schritte, wie Planung, Entwicklung und Testen des Skripts werden in dieser Zeitspanne erfolgen. Ein Erfolg wäre, wenn man vor dem geplanten Zeitplan, die Arbeit fertig bekommt. damit könnte man auch Finale optimierungen treffen. 
+Die Zeitspanne, die wir haben sind von der Kalenderwoche 42 bis zur Kalenderwoche 51. In diesen Zeitspanne, wollen wir die Arbeit gemäss den Kriterien erarbeiten und fertigstellen. Die verschiedenen Schritte, wie Planung, Entwicklung und Testen des Skripts werden in dieser Zeitspanne erfolgen. Ein Erfolg wäre, wenn man vor dem geplanten Zeitplan, die Arbeit fertig bekommt. damit könnte man auch Finale optimierungen treffen.
 
 ## Erste Schritte
 
@@ -49,7 +49,7 @@ $ cd ...
 
 ## Um den Passwort-Manager zu starten, befolge diese Schritte:
 
-1. **Ändere den DB Pfad im Skript:** 
+1. **Ändere den DB Pfad im Skript:**
 
 Sobald du die Repository geklont hast, musst du in Zeile 24 den Pfad anpassen, wo die Datei "password-manager.db" gespeichert ist
 
@@ -64,12 +64,12 @@ Füre das Skript mit PowerShell aus
 Dieses Skript besteht aus verschiedenen Funktionen.
 
 1. **Datenbankinitialisierung**:
-Importiert das PSSQLite-Modul für die Interaktion mit der SQLite-Datenbank.
+   Importiert das PSSQLite-Modul für die Interaktion mit der SQLite-Datenbank.
 
 Setzt den Pfad für die SQLite-Datenbank.
 
 2. **Globale Variablen**
-Definiert eine globale Variable $global:loggedInUserId, um die Benutzer-ID nach erfolgreichem Login zu speichern.
+   Definiert eine globale Variable $global:loggedInUserId, um die Benutzer-ID nach erfolgreichem Login zu speichern.
 
 3. **User Functions**:
 
@@ -105,15 +105,15 @@ Zeigt die Haupt-GUI des Passwort-Managers an.
 Ermöglicht Benutzern das Hinzufügen neuer Einträge, Anzeigen und Löschen vorhandener Einträge sowie das Abmelden.
 
 5. **Hauptausführung**:
-Initialisiert die Datenbankverbindung mit CreateDatabaseConnection.
+   Initialisiert die Datenbankverbindung mit CreateDatabaseConnection.
 
 Zeigt die Anmeldungs-GUI mit ShowLoginGui an.
 
 6. **Fehlerbehandlungg**:
-Fangt Ausnahmen ab und gibt Fehlermeldungen aus.
+   Fangt Ausnahmen ab und gibt Fehlermeldungen aus.
 
 7. **Ablauf**:
-Benutzer führen das Skript aus und initialisieren die Datenbankverbindung.
+   Benutzer führen das Skript aus und initialisieren die Datenbankverbindung.
 
 Das Skript fordert die Benutzer mit einer Anmeldungs-GUI auf.
 
@@ -122,37 +122,6 @@ Benutzer können sich anmelden oder registrieren.
 Nach erfolgreichem Login wird die Haupt-GUI des Passwort-Managers angezeigt.
 
 Benutzer können neue Einträge hinzufügen, vorhandene Einträge anzeigen und löschen sowie sich abmelden.
-
-- **TODO**: 
-
-[] Brainstorm Projekt //Saranhan, Parwar
-
-[] Planen der Schritte //Saranhan, Parwar
-
-[] Repository erstellen in GitHub //Parwar
-
-[] ReadMe.md schreiben // Saranhan
-
-[] Header erstellen für das Skript //Saranhan
-
-[] Datenbank erstellen //Parwar
-
-[] Datenbank Verbindung herstellen //Parwar
-
-[] Login Funktion erstellen für den Passwort-Manager //Parwar
-
-[] Eintragfunktion erstellen für Passwörter //Parwar
-
-[] Login GUI erstellen mit Sign In und Sign Up //Parwar
-
-[] Passwort-Manager GUI erstellen mit Einträge erstellen, View Notes und Logout knöpfen //Parwar
-
-[] View Notes GUI Tab erstellen, wo man die Einträge editieren oder löschen kann //Parwar
-
-[] Test- und Usecase erstellen //Saranhan
-
-[] Skript Aufbau schön machen
-
 
 ### Autor
 
@@ -171,29 +140,29 @@ Benutzer können neue Einträge hinzufügen, vorhandene Einträge anzeigen und l
 
 ## Usecase
 
-**Testfall 1: Neuen Benutzer erstellen** 
+**Testfall 1: Neuen Benutzer erstellen**
 
-**Usecase:** Ein neuer Benutzer möchte sich im Passwort-Manager registrieren. 
+**Usecase:** Ein neuer Benutzer möchte sich im Passwort-Manager registrieren.
 
 **Testszenario:**
 
-Benutzer gibt einen eindeutigen Benutzernamen und ein sicheres Passwort ein. 
+Benutzer gibt einen eindeutigen Benutzernamen und ein sicheres Passwort ein.
 
-**Schritte:** 
+**Schritte:**
 
-Skript starten mit PowerShell 
+Skript starten mit PowerShell
 
-User registrieren 
+User registrieren
 
-**Randbedingungen:** 
+**Randbedingungen:**
 
-Skript muss lokal von GitHub geklont sein. 
+Skript muss lokal von GitHub geklont sein.
 
 Im Skript den Datenbank Pfad angepasst haben.
 
-**Erwartete Ergebnisse:** 
+**Erwartete Ergebnisse:**
 
-Das Skript sollte den neuen Benutzer erfolgreich erstellen und eine Bestätigung ausgeben. 
+Das Skript sollte den neuen Benutzer erfolgreich erstellen und eine Bestätigung ausgeben.
 
 **Beweis der Durchführung:**
 
@@ -201,73 +170,68 @@ Das Skript sollte den neuen Benutzer erfolgreich erstellen und eine Bestätigung
 
 ![Alt text](screenshots/creation_successful.JPG)
 
-
-
 **Testfall 2: Benutzeranmeldung**
 
-**Usecase:** Ein Benutzer möchte sich im Passwort-Manager anmelden. 
+**Usecase:** Ein Benutzer möchte sich im Passwort-Manager anmelden.
 
-**Testszenario:** 
+**Testszenario:**
 
-Benutzer gibt gültigen Benutzernamen und gültiges Passwort ein. 
+Benutzer gibt gültigen Benutzernamen und gültiges Passwort ein.
 
-**Schritte:** 
+**Schritte:**
 
-Skript starten 
+Skript starten
 
-Einloggen mit einem erstellen User 
+Einloggen mit einem erstellen User
 
-**Randbedingungen:** 
+**Randbedingungen:**
 
-Skript muss lokal von GitHub geklont sein. 
+Skript muss lokal von GitHub geklont sein.
 
-Im Skript den Datenbank Pfad angepasst haben. 
+Im Skript den Datenbank Pfad angepasst haben.
 
 User registriert haben
 
-**Erwartete Ergebnisse:** 
+**Erwartete Ergebnisse:**
 
-Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeben. 
+Das Skript sollte den Benutzer erfolgreich anmelden und eine Bestätigung ausgeben.
 
-**Beweis der Durchführung:** 
+**Beweis der Durchführung:**
 
 ![Alt text](screenshots/db_connection.JPG)
 
 ![Alt text](screenshots/login.JPG)
 
+**Testfall 3: Neuen Eintrag hinzufügen**
 
+**Usecase:** Ein eingeloggter Benutzer möchte einen neuen Eintrag (Passwort) hinzufügen.
 
-**Testfall 3: Neuen Eintrag hinzufügen** 
+**Testszenario:**
 
-**Usecase:** Ein eingeloggter Benutzer möchte einen neuen Eintrag (Passwort) hinzufügen. 
-
-**Testszenario:** 
-
-Benutzer gibt alle erforderlichen Informationen für den neuen Eintrag ein. 
+Benutzer gibt alle erforderlichen Informationen für den neuen Eintrag ein.
 
 **Schritte:**
 
-Skript starten mit PowerShell 
+Skript starten mit PowerShell
 
-Mit einem existierenden User anmelden 
+Mit einem existierenden User anmelden
 
-Eintrag erstellen 
+Eintrag erstellen
 
-**Randbedingungen:** 
+**Randbedingungen:**
 
-Skript muss lokal von GitHub geklont sein.  
+Skript muss lokal von GitHub geklont sein.
 
-Im Skript den Datenbank Pfad angepasst haben.  
+Im Skript den Datenbank Pfad angepasst haben.
 
-User registriert haben 
+User registriert haben
 
-**Erwartete Ergebnisse:** 
+**Erwartete Ergebnisse:**
 
-Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausgeben. 
+Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausgeben.
 
-**Beweis der Durchführung:** 
+**Beweis der Durchführung:**
 
 ![Alt text](screenshots/new_entry.JPG)
 
 ![Alt text](screenshots/entry_notes.png)
-

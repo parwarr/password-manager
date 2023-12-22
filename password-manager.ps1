@@ -1,20 +1,54 @@
-# Modul 129 LB2 - Password Manager Script
+<#
+Modul 129 LB2 - Password Manager Script
 
-# Description:
-# PowerShell Password Manager is a simple yet secure password management tool developed in PowerShell. 
-# This project provides a command-line interface (CLI) for users to add and retrieve passwords in an SQLite database. 
-# The tool includes features for initializing the database, adding, edit and delete entries, and retrieving entries.
+Description:
+- PowerShell Password Manager is a simple yet secure password management tool developed in PowerShell. 
+- This project provides a command-line interface (CLI) for users to add and retrieve passwords in an SQLite database. 
+- The tool includes features for initializing the database, adding, edit and delete entries, and retrieving entries.
 
-# Author:
-# hpa134085@stud.gibb.ch
-# sth134864@stud.gibb.ch
+TODO: 
 
-# Date:
-# 22. December 2023
+[x] Brainstorm Projekt //Saranhan, Parwar
 
-# Version
-# 1.0.1
+[x] Planen der Schritte //Saranhan, Parwar
 
+[x] Repository erstellen in GitHub //Parwar
+
+[x] ReadMe.md schreiben // Saranhan
+
+[x] Header erstellen für das Skript //Saranhan
+
+[x] Datenbank erstellen //Parwar
+
+[x] Datenbank Verbindung herstellen //Parwar
+
+[x] Login Funktion erstellen für den Passwort-Manager //Parwar
+
+[x] Eintragfunktion erstellen für Passwörter //Parwar
+
+[x] Login GUI erstellen mit Sign In und Sign Up //Parwar
+
+[x] Passwort-Manager GUI erstellen mit Einträge erstellen, View Notes und Logout knöpfen //Parwar
+
+[x] View Notes GUI Tab erstellen, wo man die Einträge editieren oder löschen kann //Parwar
+
+[x] Test- und Usecase erstellen //Saranhan
+
+[] Skript Aufbau schön machen
+
+
+Author:
+- hpa134085@stud.gibb.ch
+- sth134864@stud.gibb.ch
+
+Date:
+- 22. December 2023
+
+Version
+- 1.0.1
+#>
+
+# Clears the terminal after every run
 Clear-Host
 
 # Import the PSSQLite module
