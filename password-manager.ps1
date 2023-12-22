@@ -34,7 +34,7 @@ TODO:
 
 [x] Test- und Usecase erstellen //Saranhan
 
-[] Skript Aufbau schön machen
+[X] Skript Aufbau schön machen
 
 
 Author:
@@ -112,7 +112,9 @@ function CreateLogin {
 # Function to logout
 function Logout {
     $global:loggedInUserId = $null
+
     Write-Host "Logout successful" -ForegroundColor Green
+
     $form.Dispose()  
     ShowLoginGui   
 }
@@ -132,6 +134,7 @@ function Login {
             $global:loggedInUserId = $result.Id
             Write-Host "Login successful" -ForegroundColor Green
             return
+
         } else {
             Write-Host "Login failed" -ForegroundColor Red
         }
@@ -158,14 +161,14 @@ function AddEntry {
     # Email validation regex
     $emailRegex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'
     if ($email -and $email -notmatch $emailRegex) {
-     Write-Host "Error: Invalid email format." -ForegroundColor Red
+        Write-Host "Error: Invalid email format." -ForegroundColor Red
     return
     }
 
     # URL validation regex
     $urlRegex = '^https?://(?:www.)?[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/?.*$'
     if ($url -and $url -notmatch $urlRegex) {
-    Write-Host "Error: Invalid URL format." -ForegroundColor Red
+        Write-Host "Error: Invalid URL format." -ForegroundColor Red
     return
     }
 
@@ -243,6 +246,7 @@ function ShowLoginGui {
     $buttonSignIn.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
     $buttonSignIn.FlatAppearance.BorderSize = 0
     $buttonSignIn.Add_Click({
+        
         $username = $textboxUsername.Text
         $password = $textboxPassword.Text
         Login -username $username -password $password
@@ -302,13 +306,16 @@ function ShowLoginGui {
     $buttonSignUp.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
     $buttonSignUp.FlatAppearance.BorderSize = 0
     $buttonSignUp.Add_Click({
+
         $newUsername = $textboxNewUsername.Text
         $newPassword = $textboxNewPassword.Text
         CreateLogin -username $newUsername -password $newPassword
 
         if (-not $global:loggedInUserId) {
             [System.Windows.Forms.MessageBox]::Show("Sign up failed. Please retry.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
-        } else {
+        } 
+        
+        else {
             $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
             $form.Dispose()
             ShowPasswordManagerGui
@@ -368,6 +375,7 @@ function ViewNotes {
     $deleteTextBox.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Italic)
     $deleteTextBox.BackColor = [System.Drawing.Color]::FromArgb(255, 29, 31, 33) 
     $deleteTextBox.Add_Enter({
+
         if ($deleteTextBox.Text -eq "Enter ID to delete or edit") {
             $deleteTextBox.Text = ""
             $deleteTextBox.ForeColor = [System.Drawing.Color]::White
@@ -384,6 +392,7 @@ function ViewNotes {
     $buttonDelete.ForeColor = [System.Drawing.Color]::White
     $buttonDelete.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonDelete.Add_Click({
+
         $deleteId = $deleteTextBox.Text
         foreach ($entry in $entriesResult) {
             if ($deleteId -eq $entry.ID) {
@@ -410,6 +419,7 @@ function ViewNotes {
     $buttonEdit.ForeColor = [System.Drawing.Color]::White
     $buttonEdit.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
     $buttonEdit.Add_Click({
+
         $editId = $deleteTextBox.Text
         foreach ($entry in $entriesResult) {
             if ($editId -eq $entry.ID) {
@@ -458,14 +468,14 @@ function ViewNotes {
 
         # Display details of the entry
         $textboxNotes.Text = @"
-Title: $($entry.Title)
-Email: $($entry.Email)
-Username: $($entry.Username)
-Password: $($entry.Password)
-Notes: $($entry.Notes)
-URL: $($entry.Url)
-Tags: $($entry.Tags)
-ID: $($entry.ID)
+            Title: $($entry.Title)
+            Email: $($entry.Email)
+            Username: $($entry.Username)
+            Password: $($entry.Password)
+            Notes: $($entry.Notes)
+            URL: $($entry.Url)
+            Tags: $($entry.Tags)
+            ID: $($entry.ID)
 "@
     }
 
@@ -480,6 +490,7 @@ ID: $($entry.ID)
     $buttonClose.Add_Click({
         $form.Dispose()
     })
+
     $form.Controls.Add($buttonClose)
 
     $form.ShowDialog() | Out-Null
@@ -612,6 +623,7 @@ function EditNoteForm {
         # Email validation regex
         $emailRegex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'
         if ($editedEntry.Email -and $editedEntry.Email -notmatch $emailRegex) {
+
          Write-Host "Error: Invalid email format." -ForegroundColor Red
         return
         }
@@ -619,6 +631,7 @@ function EditNoteForm {
         # URL validation regex
         $urlRegex = '^https?://(?:www.)?[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/?.*$'
         if ($editedEntry.URL -and $editedEntry.URL -notmatch $urlRegex) {
+
         Write-Host "Error: Invalid URL format." -ForegroundColor Red
         return
         }
@@ -749,6 +762,7 @@ function ShowPasswordManagerGui {
     $buttonAddEntry.BackColor = [System.Drawing.Color]::FromArgb(255, 41, 128, 185)  
     $buttonAddEntry.ForeColor = [System.Drawing.Color]::White
     $buttonAddEntry.Add_Click({
+
         $title = $textboxTitle.Text
         $email = $textboxEmail.Text
         $username = $textboxUsername.Text
