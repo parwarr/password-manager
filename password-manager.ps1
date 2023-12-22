@@ -33,7 +33,8 @@ function CreateDatabaseConnection {
     if ($conn.State -eq 'Open') {
         Write-Host "Connection to database established" -ForegroundColor Green
     } else {
-        Write-Host "Connection to database failed" -ForegroundColor Red
+        Write-Host "Connection to database failed exiting script" -ForegroundColor Red
+        exit 1
     } 
 }
 
