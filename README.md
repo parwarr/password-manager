@@ -269,8 +269,5 @@ Das Skript sollte den Eintrag erfolgreich hinzufügen und eine Bestätigung ausg
 
 ![Alt text](screenshots/new_entry.JPG)
 
-![Alt text](screenshots/entry_added.JPG)
-
-![Alt text](screenshots/notes_entry.png)
-
+![Alt text](screenshots/entry_notes.png)
 
