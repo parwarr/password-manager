@@ -1,5 +1,5 @@
 <#
-Modul 129 LB2 - Password Manager Script
+Modul 122 LB2 - Password Manager
 
 Description:
 - PowerShell Password Manager is a simple yet secure password management tool developed in PowerShell. 
@@ -34,7 +34,7 @@ TODO:
 
 [x] Test- und Usecase erstellen //Saranhan
 
-[X] Skript Aufbau schön machen
+[x] Skript Aufbau schön machen
 
 
 Author:
