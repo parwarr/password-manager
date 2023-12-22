@@ -55,7 +55,7 @@ Clear-Host
 Import-Module PSSQLite
 
 # Set Database Path
-$db = "C:\Users\parwa\Documents\dev\password-manager\password-manager.db"
+$db = "C:\Users\saran\password-manager\password-manager.db"
 
 # Global variable to store the logged-in user ID
 $global:loggedInUserId = $null
@@ -796,8 +796,18 @@ function ShowPasswordManagerGui {
         })
         $form.Controls.Add($buttonLogout)
 
-    $form.ShowDialog()
-}
+        # Add a while loop to continuously show the password manager GUI until the user decides to exit
+        while ($true) {
+            $result = $form.ShowDialog()
+    
+            # Check if the user closed the form
+            if ($result -eq [System.Windows.Forms.DialogResult]::Cancel) {
+                # Exit the while loop and end the script
+                break
+            }
+        }
+    }
+
 
 
 # Main script execution
