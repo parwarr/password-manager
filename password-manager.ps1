@@ -73,7 +73,6 @@ function CreateDatabaseConnection {
 }
 
 # Function to create a new login
-# TODO: fix the create login function
 function CreateLogin {
     param (
         [string]$username,
