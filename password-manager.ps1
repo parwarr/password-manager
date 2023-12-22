@@ -2,8 +2,8 @@
 
 # Description:
 # PowerShell Password Manager is a simple yet secure password management tool developed in PowerShell. 
-# This project provides a command-line interface (CLI) for users to add and retrieve passwords securely stored in an SQLite database. 
-# The tool includes features for initializing the database, adding new passwords, and retrieving passwords for specific services.
+# This project provides a command-line interface (CLI) for users to add and retrieve passwords in an SQLite database. 
+# The tool includes features for initializing the database, adding, edit and delete entries, and retrieving entries.
 
 # Author:
 # hpa134085@stud.gibb.ch
