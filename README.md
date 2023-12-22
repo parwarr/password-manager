@@ -61,7 +61,7 @@ Füre das Skript mit PowerShell aus
 
 ### Skript Übersicht
 
-The script consists of several functions and steps:
+Dieses Skript besteht aus verschiedenen Funktionen.
 
 1. **Datenbankinitialisierung**:
 Importiert das PSSQLite-Modul für die Interaktion mit der SQLite-Datenbank.
