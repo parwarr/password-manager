@@ -2,8 +2,8 @@
 Modul 122 LB2 - Password Manager
 
 Description:
-- PowerShell Password Manager is a simple yet secure password management tool developed in PowerShell. 
-- This project provides a command-line interface (CLI) for users to add and retrieve passwords in an SQLite database. 
+- PowerShell Password Manager is a simple password management tool developed in PowerShell. 
+- This project provides a gui for users to add, edit, delete and retrieve entries in an SQLite database. 
 - The tool includes features for initializing the database, adding, edit and delete entries, and retrieving entries.
 
 TODO: 
